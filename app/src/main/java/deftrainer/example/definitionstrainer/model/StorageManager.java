@@ -23,6 +23,9 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.List;
 
+// kann sein, dass er die lokale library nicht findet
+// dann einfach die entsprechende .jar Datei extern irgendwo speichern und
+// den absoluten Pfad in build.gradle zu der .jar Datei anpassen.
 import com.fasterxml.jackson.databind.*;
 
 public class StorageManager {
