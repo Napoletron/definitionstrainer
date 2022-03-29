@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textview6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="32dp"
+        android:text="@string/title"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="#000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/dhf_et_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:background="#0C000000"
+        android:ems="10"
+        android:hint="@string/title"
+        android:inputType="textPersonName"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/textview6"
+        app:layout_constraintTop_toBottomOf="@+id/textview6" />
+
+    <TextView
+        android:id="@+id/dhf_tv_defintion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/definition"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="#000000"
+        app:layout_constraintStart_toStartOf="@+id/dhf_et_title"
+        app:layout_constraintTop_toBottomOf="@+id/dhf_et_title" />
+
+    <Spinner
+        android:id="@+id/dhf_spin_fach"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:foreground="#0D000000"
+        app:layout_constraintBottom_toTopOf="@+id/dhf_tv_klasse"
+        app:layout_constraintEnd_toEndOf="@+id/dhf_met_definition"
+        app:layout_constraintStart_toStartOf="@+id/dhf_tv_fach" />
+
+    <TextView
+        android:id="@+id/dhf_tv_fach"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="@string/subject"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toTopOf="@+id/dhf_spin_fach"
+        app:layout_constraintStart_toStartOf="@+id/dhf_met_definition" />
+
+    <EditText
+        android:id="@+id/dhf_met_definition"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
+        android:background="#0C000000"
+        android:ems="10"
+        android:gravity="start|top"
+        android:hint="@string/definition"
+        android:inputType="textMultiLine"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/dhf_tv_fach"
+        app:layout_constraintEnd_toEndOf="@+id/dhf_et_title"
+        app:layout_constraintStart_toStartOf="@+id/dhf_tv_defintion"
+        app:layout_constraintTop_toBottomOf="@+id/dhf_tv_defintion" />
+
+    <Button
+        android:id="@+id/dhf_b_fertig"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:text="@string/create"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/dhf_spin_fach"
+        app:layout_constraintStart_toStartOf="@+id/dhf_spin_fach" />
+
+    <TextView
+        android:id="@+id/dhf_tv_klasse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="@string/class_string"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toTopOf="@+id/dhf_spin_class"
+        app:layout_constraintStart_toStartOf="@+id/dhf_tv_fach" />
+
+    <Spinner
+        android:id="@+id/dhf_spin_class"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:foreground="#0D000000"
+        app:layout_constraintBottom_toTopOf="@+id/dhf_b_fertig"
+        app:layout_constraintEnd_toEndOf="@+id/dhf_spin_fach"
+        app:layout_constraintStart_toStartOf="@+id/dhf_spin_fach" />
+
+    <Button
+        android:id="@+id/dhf_b_delete"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@android:drawable/ic_menu_delete"
+        app:layout_constraintBottom_toTopOf="@+id/dhf_et_title"
+        app:layout_constraintEnd_toEndOf="@+id/dhf_et_title"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

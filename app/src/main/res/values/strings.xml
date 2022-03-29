@@ -1,0 +1,63 @@
+<resources>
+    <string name="app_name">Definitionstrainer</string>
+    <string name="add">Add</string>
+    <string name="has_been_added">has been added</string>
+    <string name="settings">Settings</string>
+    <string name="export_to_downloads">Export to \".../Downloads/definitions.json\" ?</string>
+    <string name="export_was_successful">Export was successful</string>
+    <string name="ok" translatable="false">OK</string>
+    <string name="cancel" translatable="false">Cancel</string>
+    <string name="do_you_want_to_reset_the_skill">Do you want to reset the skill of all definitions?</string>
+    <string name="do_you_want_to_reset_the_app">Do you want to reset the app completly?</string>
+    <string name="import_and_overwrite_definitions">Add new definitions to the existing collection? This could take a while.</string>
+    <string name="area_selection">Area selection</string>
+    <string name="subject_selection">Subject selection</string>
+    <string name="search">Search...</string>
+    <string name="do_you_want_to_delete">"Do you want to delete "</string>
+    <string name="deleting_successful">Deleting sucessful</string>
+    <string name="definition">Definition</string>
+    <string name="back">Back</string>
+    <string name="larum_ipsum" translatable="false">Larum Ipsum</string>
+    <string name="show">Show</string>
+    <string name="better_repeat">Better repeat</string>
+    <string name="solved_it">Solved it</string>
+    <string name="subject">Subject</string>
+    <string name="title">Title</string>
+    <string name="create">Create</string>
+    <string name="all_definitions">All definitions</string>
+    <string name="faecherunterricht" translatable="false">Fächerunterricht</string>
+    <string name="streife" translatable="false">Streife</string>
+    <string name="verkehr" translatable="false">Verkehr</string>
+    <string name="kriminalitaet" translatable="false">Kriminalität</string>
+    <string name="train">Train</string>
+    <string name="export_definition_collection">Export your collection of definitions on your device</string>
+    <string name="import_definition_collection">Import a definition collection. Imprtant: This will overwrite all currently existing definitions in this app.</string>
+    <string name="reset_skill">Reset skill. This will set the skill of all definitions to 0!</string>
+    <string name="reset">Reset</string>
+    <string name="export">Export</string>
+    <string name="importt">Import</string>
+    <string name="skill_reset_successful">Skill reset was successful</string>
+    <string name="textAbout" translatable="false">"Diese App soll dem Benutzer dabei helfen, die Definitionen zu lernen welche ihm in der Ausbildung zum Polizeikommissar(in) "</string>
+    <string name="import_was_successful">import was successful</string>
+    <string name="definitions_were_added">Definitions were added</string>
+    <string name="reset_was_successful">Reset was successful</string>
+    <string name="delete">Delete</string>
+    <string name="description_max_Skill">The increase for a correctly guessed definition. Standard is 2.</string>
+    <string name="description_max_voc_to_learn">The decrease for a false guessed definition. Standard is 4.</string>
+    <string name="save">Save</string>
+    <string name="settings_were_saved">Settings were saved</string>
+    <string name="X_default_defintions_were_found_do_you_want_to_add_them">default definitions were found. Do you want to add them? (This could take a view moments)</string>
+    <string name="dont_ask_me_again">Don\'t ask me again</string>
+    <string name="cheat" translatable="false">CHEAT</string>
+    <string name="set_skill_to_max">Set the skill of all definitions to the maximum</string>
+    <string name="cheat_was_successful">Cheat was successful</string>
+    <string name="class_string">Class</string>
+    <string name="update">Update</string>
+    <string name="description_class">Choose your class</string>
+    <string name="you_have_mastered">You have mastered</string>
+    <string name="of">of</string>
+    <string name="definitions_in_the_class">definitions in the class</string>
+    <string name="gemeistert"></string>
+    <string name="you_need_to_grant_permission_to_access_the_external_storage">Can\'t Export/Import due to missing permission. Please grant the permission to access the storage.</string>
+    <string name="a_picture_with_questionmarks">A picture with questionmarks on it</string>
+</resources>
