@@ -23,19 +23,20 @@ android {
 }
 
 dependencies {
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    implementation 'androidx.appcompat:appcompat:1.4.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
+    implementation 'androidx.recyclerview:recyclerview:1.2.1'
     implementation fileTree(dir: 'libs', include: ['*.aar', '*.jar'], exclude: [])
     implementation files('libs/jackson-databind-2.11.1.jar')
     implementation files('libs/jackson-annotations-2.11.1.jar')
-    implementation files('libs/jackson-core-2.11.1.jar')
     implementation files('libs/java-string-similarity-0.24.jar')
-    //implementation files('/home/david/eclipse-workspace/external_jars/jackson/jackson-annotations-2.11.1.jar')
-    //implementation files('libs/jackson-databind-2.11.1.jar')
-    //implementation files('libs/java-string-similarity-0.24.jar')
+    implementation files('libs/jackson-core-2.11.1.jar')
+    implementation files('/home/david/eclipse-workspace/external_jars/jackson/jackson-annotations-2.11.1.jar')
+    implementation files('/home/david/eclipse-workspace/external_jars/jackson/jackson-databind-2.11.1.jar')
+    implementation files('/home/david/eclipse-workspace/external_jars/jackson/java-string-similarity-0.24.jar')
+    implementation files('/home/david/eclipse-workspace/external_jars/jackson/jackson-core-2.11.1.jar')
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
 }
