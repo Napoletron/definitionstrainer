@@ -9,8 +9,8 @@
 
     <ImageView
         android:id="@+id/mainImage"
-        android:layout_width="100pt"
-        android:layout_height="150dp"
+        android:layout_width="255dp"
+        android:layout_height="170dp"
         android:layout_marginTop="8dp"
         android:background="#00FFFFFF"
         android:contentDescription="@string/a_picture_with_questionmarks"
