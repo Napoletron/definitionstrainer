@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import deftrainer.example.definitionstrainer.R;
 import deftrainer.example.definitionstrainer.model.DefinitionsManager;
@@ -21,7 +22,10 @@ public class MainActivity extends AppCompatActivity {
     private Button button_einstellungen;
     private Button button_trainieren;
     private Button button_suchen;
+    private View image;
 
+    private int toggleDeveloperModeCounter = 0;
+    private static int MAX_TOGGLE_COUNTER = 10;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,17 +39,26 @@ public class MainActivity extends AppCompatActivity {
         initEinstellungenButton();
         initButtonSuchen();
         initButtonAbout();
+        initMainImage();
 
         // Don't change the order of the following (3) functions!
         Settings.tryToLoadSettings(this); // (1)
 
-        if (Settings.getSettings().getFIRST_INSTALL() || Settings.TESTING) {
+        if (Settings.getSettings().getFIRST_INSTALL()) {
             showRestrictedContentDialog();
         }
 
         DefinitionsManager.getDefinitionsManager().tryToLoadDefinitions(this); // (2)
         Settings.makeUpdatesIfNecessary(this); // (3)
+    }
 
+    @Override
+    public void onResume(){
+        super.onResume();
+
+        if (Settings.TESTING) {
+            showRestrictedContentDialog();
+        }
     }
 
     private void showRestrictedContentDialog() {
@@ -73,6 +86,28 @@ public class MainActivity extends AppCompatActivity {
         button_trainieren = findViewById(R.id.fba_b_alleDefinitionen);
         button_suchen = findViewById(R.id.ma_b_suchen);
         button_about = findViewById(R.id.button_about);
+        image = findViewById(R.id.mainImage);
+    }
+
+    private void initMainImage() {
+        final Context context = this;
+        image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                toggleDeveloperModeCounter += 1;
+                if (toggleDeveloperModeCounter == MAX_TOGGLE_COUNTER) {
+                    if (Settings.TESTING) {
+                        Settings.TESTING = false;
+                        Toast.makeText(context, "Testmodus deaktiviert", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Settings.TESTING = true;
+                        Toast.makeText(context, "Testmodus aktiviert", Toast.LENGTH_SHORT).show();
+                    }
+                    toggleDeveloperModeCounter = 0;
+                }
+            }
+        });
+
     }
 
     private void initTrainierenButton() {
