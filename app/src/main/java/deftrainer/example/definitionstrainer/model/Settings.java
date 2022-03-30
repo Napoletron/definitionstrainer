@@ -18,7 +18,7 @@ public class Settings implements Serializable {
     // YY = Feature
     // ZZ = Bug-fix
     public static final int APP_VERSION = 11300;
-    public static final boolean TESTING = false;
+    public static final boolean TESTING = true;
 
     // The value at which a definitions skill is increased or decreased if guessed correct or wrong
     private int INCREASE;
@@ -71,6 +71,10 @@ public class Settings implements Serializable {
         tryToSaveSettings(c);
     }
 
+    /*
+    Makes all necessary updates.
+    FIRST_INSTALL will be false, after this method was called.
+     */
     public static void makeUpdatesIfNecessary(Context c) {
         if (TESTING || Settings.getSettings().getVersion() < APP_VERSION && Settings.getSettings().askMeAgain()) {
 

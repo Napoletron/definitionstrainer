@@ -1,8 +1,10 @@
 package deftrainer.example.definitionstrainer.Activities;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -34,10 +36,32 @@ public class MainActivity extends AppCompatActivity {
         initButtonSuchen();
         initButtonAbout();
 
-        // Don't change the order of the following 3 functions!
-        Settings.tryToLoadSettings(this);
-        DefinitionsManager.getDefinitionsManager().tryToLoadDefinitions(this);
-        Settings.makeUpdatesIfNecessary(this);
+        // Don't change the order of the following (3) functions!
+        Settings.tryToLoadSettings(this); // (1)
+
+        if (Settings.getSettings().getFIRST_INSTALL() || Settings.TESTING) {
+            showRestrictedContentDialog();
+        }
+
+        DefinitionsManager.getDefinitionsManager().tryToLoadDefinitions(this); // (2)
+        Settings.makeUpdatesIfNecessary(this); // (3)
+
+    }
+
+    private void showRestrictedContentDialog() {
+
+        final Context context = this;
+        AlertDialog.Builder adb = new AlertDialog.Builder(context);
+        adb.setTitle(R.string.restricted_content);
+        adb.setMessage(R.string.restricted_content_may_not_be_inserted);
+        adb.setCancelable(false);
+        adb.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                // stub
+            }
+        });
+        adb.create().show();
     }
 
     /**

@@ -60,4 +60,8 @@
     <string name="gemeistert"></string>
     <string name="you_need_to_grant_permission_to_access_the_external_storage">Can\'t Export/Import due to missing permission. Please grant the permission to access the storage.</string>
     <string name="a_picture_with_questionmarks">A picture with questionmarks on it</string>
+    <string name="add_definition">Definition. No restricted content may be inserted here!</string>
+    <string name="restricted_content">Restricted Content</string>
+    <string name="restricted_content_may_not_be_inserted">It is forbidden to store restricted content (VS-NfD) in this App!</string>
+    <string name="understood">Unterstood</string>
 </resources>
