@@ -33,7 +33,8 @@
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/textview6"
-        app:layout_constraintTop_toBottomOf="@+id/textview6" />
+        app:layout_constraintTop_toBottomOf="@+id/textview6"
+        android:importantForAutofill="no" />
 
     <TextView
         android:id="@+id/dhf_tv_defintion"
@@ -76,13 +77,14 @@
         android:background="#0C000000"
         android:ems="10"
         android:gravity="start|top"
-        android:hint="@string/definition"
+        android:hint="@string/add_definition"
         android:inputType="textMultiLine"
         android:textSize="14sp"
         app:layout_constraintBottom_toTopOf="@+id/dhf_tv_fach"
         app:layout_constraintEnd_toEndOf="@+id/dhf_et_title"
         app:layout_constraintStart_toStartOf="@+id/dhf_tv_defintion"
-        app:layout_constraintTop_toBottomOf="@+id/dhf_tv_defintion" />
+        app:layout_constraintTop_toBottomOf="@+id/dhf_tv_defintion"
+        android:importantForAutofill="no" />
 
     <Button
         android:id="@+id/dhf_b_fertig"
