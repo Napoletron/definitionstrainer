@@ -18,7 +18,7 @@ public class Settings implements Serializable {
     // YY = Feature
     // ZZ = Bug-fix
     public static final int APP_VERSION = 11300;
-    public static final boolean TESTING = true;
+    public static boolean TESTING = false;
 
     // The value at which a definitions skill is increased or decreased if guessed correct or wrong
     private int INCREASE;
