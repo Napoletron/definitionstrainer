@@ -296,9 +296,20 @@ public class DefinitionsManager {
     public List<String> getAllClasses() {
         List<String> classes = new ArrayList<>();
 
-        classes.add("GS 44");
-        classes.add("HS 44");
-        classes.add("20S");
+        //classes.add("GS 44"); "GS 44" --> "GS I K-IT", "GS I VOS", "GS II K-IT", "GS II VOS"
+        //classes.add("HS 44"); "HS 44" --> "HS I K-IT", "HS I VOS", "HS II K-IT", "HS II VOS"
+        //classes.add("20S"); "20 S" --> "Grundausbildung"
+        classes.add("GS I K-IT");
+        classes.add("GS I VOS");
+        classes.add("GS II K-IT");
+        classes.add("GS II VOS");
+
+        classes.add("HS I K-IT");
+        classes.add("HS I VOS");
+        classes.add("HS II K-IT");
+        classes.add("HS II VOS");
+
+        classes.add("Grundausbildung");
 
         for (Definition d : all_definitions) {
             for (String s : d.getJahrgaenge()) {
