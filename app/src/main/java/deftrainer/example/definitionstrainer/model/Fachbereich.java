@@ -14,52 +14,39 @@ public class Fachbereich implements Serializable {
     public List<Fach> fachliste;
 
     // Standardfächer
-    public static final Fachbereich FACHERUNTERRICHT = new Fachbereich("Fächerunterricht und Basismodul",
-            "Einführung Recht",
-            "Führungslehre",
-            "Information und Kommunikation",
-            "Kriminalistik",
-            "Polizeirecht",
-            "Psychologie",
-            "Polizeitaktik",
-            "Strafprozessrecht",
-            "Strafrecht",
-            "Staats- und Verfassungsrecht",
-            "Verkehrsrecht",
-            "Öffentliches Dienstrecht");
+    public static final Fachbereich EINSATZUNDFUEHRUNGSWISS = new Fachbereich("Einsatz- und Führungswissenschaften",
+            "Einsatztraining",
+            "Einsatzwissenschaften",
+            "Führungswissenschaften",
+            "Sport",
+            "Verkehrswissenschaften");
 
-    public static final Fachbereich STREIFE =  new Fachbereich("Leitthema Streife",
-            "Polizeirecht",
-            "Besonderes Polizeirecht",
-            "Information und Kommunikation",
-            "Öffentliches Dienstrecht",
-            "Psychologie-S",
-            "Staats- und Verfassungsrecht",
-            "Staats- und Verfassungsrecht-S",
-            "Strafrecht-S",
-            "Taktik-S",
-            "Streife-SHT");
-
-    public static final Fachbereich VERKEHR = new Fachbereich("Leitthema Verkehr",
-            "Taktik-V",
-            "Information und Kommunikation",
-            "Psychologie-V",
-            "Verkehrsrecht",
-            "Strafprozessrecht-V",
-            "Strafrecht-V",
-            "Verkehr SHT");
-
-    public static final Fachbereich KRIMINALITAETSBEKAEMPFUNG = new Fachbereich("Leitthema Kriminalitätsbekämpfung",
-            "Information und Kommunikation",
-            "Besonderes Polizeirecht",
-            "Kriminalistik",
+    public static final Fachbereich KRIMINALITAET =  new Fachbereich("Kriminalitätswissenschaften",
             "Kriminaltaktik",
             "Kriminaltechnik",
-            "Kriminologie",
-            "Psychologie-K",
-            "Strafprozessrecht",
+            "Kriminologie und Soziologie",
+            "Kriminalistik");
+
+    public static final Fachbereich RECHT = new Fachbereich("Rechtswissenschaften",
+            "Öffentliches Dienstrecht",
+            "Europarecht",
+            "Polizei- und Verwaltungsrecht",
+            "Staats- und Verfassungsrecht",
             "Strafrecht",
-            "KriminalitätsBekämpfung SHT");
+            "Strafprozessrecht",
+            "Versammlungsrecht",
+            "PolR - BtmG",
+            "Europarecht");
+
+    public static final Fachbereich SOZIALWISS = new Fachbereich("Sozialwissenschaften",
+            "Informatik",
+            "Berufsethik",
+            "BWL",
+            "Politikwissenschaft",
+            "Psychologie",
+            "Englisch",
+            "Französisch",
+            "Methodenlehre");
 
     public Fachbereich(String fachbereichname, String ... faecher){
         this.fachbereichname = fachbereichname;
@@ -75,10 +62,10 @@ public class Fachbereich implements Serializable {
      */
     public static List<String> getAllFaecherOfAllFields() {
         List<String> faecher = new ArrayList<>();
-        faecher.addAll(FACHERUNTERRICHT.getAllFaecher());
-        faecher.addAll(STREIFE.getAllFaecher());
-        faecher.addAll(VERKEHR.getAllFaecher());
-        faecher.addAll(KRIMINALITAETSBEKAEMPFUNG.getAllFaecher());
+        faecher.addAll(EINSATZUNDFUEHRUNGSWISS.getAllFaecher());
+        faecher.addAll(KRIMINALITAET.getAllFaecher());
+        faecher.addAll(RECHT.getAllFaecher());
+        faecher.addAll(SOZIALWISS.getAllFaecher());
 
         // remove duplicates
         List<String> distinct = new ArrayList<>();
