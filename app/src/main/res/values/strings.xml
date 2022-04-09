@@ -25,9 +25,6 @@
     <string name="title">Title</string>
     <string name="create">Create</string>
     <string name="all_definitions">All definitions</string>
-    <string name="faecherunterricht" translatable="false">Fächerunterricht</string>
-    <string name="streife" translatable="false">Streife</string>
-    <string name="verkehr" translatable="false">Verkehr</string>
     <string name="kriminalitaet" translatable="false">Kriminalität</string>
     <string name="train">Train</string>
     <string name="export_definition_collection">Export your collection of definitions on your device</string>
@@ -64,4 +61,7 @@
     <string name="restricted_content">Restricted Content</string>
     <string name="restricted_content_may_not_be_inserted">It is forbidden to store restricted content (VS-NfD) in this App!</string>
     <string name="understood">Unterstood</string>
+    <string name="sozialwissenschaften" translatable="false">Sozialwissenschaften</string>
+    <string name="einsatzwissenschaften" translatable="false">Einsatzwissenschaften</string>
+    <string name="recht">Recht</string>
 </resources>

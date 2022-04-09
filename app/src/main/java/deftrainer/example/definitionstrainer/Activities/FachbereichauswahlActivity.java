@@ -79,10 +79,10 @@ public class FachbereichauswahlActivity extends AppCompatActivity  {
             }
         }
 
-        button_facherunterricht.setOnClickListener(new MyOnClickListener(Fachbereich.FACHERUNTERRICHT, this));
-        button_streife.setOnClickListener(new MyOnClickListener(Fachbereich.STREIFE, this));
-        button_verkehr.setOnClickListener(new MyOnClickListener(Fachbereich.VERKEHR, this));
-        button_kriminalitaet.setOnClickListener(new MyOnClickListener(Fachbereich.KRIMINALITAETSBEKAEMPFUNG, this));
+        button_facherunterricht.setOnClickListener(new MyOnClickListener(Fachbereich.EINSATZUNDFUEHRUNGSWISS, this));
+        button_streife.setOnClickListener(new MyOnClickListener(Fachbereich.KRIMINALITAET, this));
+        button_verkehr.setOnClickListener(new MyOnClickListener(Fachbereich.RECHT, this));
+        button_kriminalitaet.setOnClickListener(new MyOnClickListener(Fachbereich.SOZIALWISS, this));
 
     }
 

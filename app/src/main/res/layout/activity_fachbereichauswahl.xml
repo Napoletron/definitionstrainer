@@ -48,9 +48,9 @@
                 android:layout_margin="4pt"
                 android:layout_weight="1"
                 android:background="@color/polizeiblau"
-                android:text="@string/faecherunterricht"
+                android:text="@string/einsatzwissenschaften"
                 android:textColor="#000000"
-                android:textSize="14sp" />
+                android:textSize="12sp" />
 
             <Button
                 android:id="@+id/fba_b_streife"
@@ -59,8 +59,8 @@
                 android:layout_margin="4pt"
                 android:layout_weight="1"
                 android:background="@color/polizeiblau"
-                android:text="@string/streife"
-                android:textSize="14sp" />
+                android:text="@string/kriminalitaet"
+                android:textSize="12sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -76,8 +76,8 @@
                 android:layout_margin="4pt"
                 android:layout_weight="1"
                 android:background="@color/polizeiblau"
-                android:text="@string/verkehr"
-                android:textSize="14sp" />
+                android:text="@string/recht"
+                android:textSize="12sp" />
 
             <Button
                 android:id="@+id/fba_b_kriminalitaet"
@@ -86,8 +86,8 @@
                 android:layout_margin="4pt"
                 android:layout_weight="1"
                 android:background="@color/polizeiblau"
-                android:text="@string/kriminalitaet"
-                android:textSize="14sp" />
+                android:text="@string/sozialwissenschaften"
+                android:textSize="12sp" />
         </LinearLayout>
 
         <Button
