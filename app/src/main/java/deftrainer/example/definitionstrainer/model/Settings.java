@@ -17,7 +17,7 @@ public class Settings implements Serializable {
     // XX = Version
     // YY = Feature
     // ZZ = Bug-fix
-    public static final int APP_VERSION = 11400;
+    public static final int APP_VERSION = 11500;
     public static boolean TESTING = false;
 
     // The value at which a definitions skill is increased or decreased if guessed correct or wrong
@@ -32,7 +32,7 @@ public class Settings implements Serializable {
     private String klasse;
 
 
-    private static Settings settings = new Settings(STANDARD_INCREASE, STANDARD_DECREASE, 0, "20S");
+    private static Settings settings = new Settings(STANDARD_INCREASE, STANDARD_DECREASE, 0, "Grundausbildung");
 
     private Settings(int increase, int decrease, int version, String klasse) {
         this.INCREASE = increase;
