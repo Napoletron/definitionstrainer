@@ -25,6 +25,7 @@ public class DefinitionsManager {
     private List<Definition> important_definitions = null;
     private String filter_string = "<empty>";
     private Random RANDOM = new Random();
+    private int lastDefinitionId;
 
     /**
      * Diese Methode gibt den Definitionsmanager zurück.
@@ -128,7 +129,21 @@ public class DefinitionsManager {
      */
     public Definition getNextDefinition() {
         List<Definition> relevant_definitions = filterDefinitions();
-        return  getDefinitionToLearn(relevant_definitions);
+
+        Definition candidateDefinition = getDefinitionToLearn(relevant_definitions);
+
+        // make sure, there are not direct repetitions
+        if (relevant_definitions.size() > 1) {
+            int candidateId = candidateDefinition.getID();
+            while (candidateId == lastDefinitionId) {
+                candidateDefinition = getDefinitionToLearn(relevant_definitions);
+                candidateId = candidateDefinition.getID();
+            }
+        }
+
+        lastDefinitionId = candidateDefinition.getID();
+
+        return candidateDefinition;
     }
 
     /**
