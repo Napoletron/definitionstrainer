@@ -2,6 +2,7 @@ package deftrainer.example.definitionstrainer.Activities;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -22,6 +23,7 @@ public class FachbereichauswahlActivity extends AppCompatActivity  {
     private Button button_verkehr;
     private Button button_kriminalitaet;
     private Button button_alle_Definitionen;
+    private Button button_favorits;
 
     private TextView fba_tv_entry;
 
@@ -34,6 +36,7 @@ public class FachbereichauswahlActivity extends AppCompatActivity  {
         getAllViews();
         initFachbereichButtons();
         initAlleDefinitionenButton();
+        initFavoritsButton();
         initEntryText();
     }
 
@@ -48,12 +51,31 @@ public class FachbereichauswahlActivity extends AppCompatActivity  {
      * this method finds all views for this activity and assigns them
      */
     private void getAllViews() {
-        button_facherunterricht = findViewById(R.id.fba_b_facherunterricht);
-        button_streife = findViewById(R.id.fba_b_streife);
-        button_verkehr = findViewById(R.id.fba_b_verkehr);
-        button_kriminalitaet = findViewById(R.id.fba_b_kriminalitaet);
+        button_facherunterricht = findViewById(R.id.fba_b_einsatzwiss);
+        button_streife = findViewById(R.id.fba_b_krim);
+        button_verkehr = findViewById(R.id.fba_b_recht);
+        button_kriminalitaet = findViewById(R.id.fba_b_sozial);
         button_alle_Definitionen = findViewById(R.id.fba_b_alleDefinitionen);
         fba_tv_entry = findViewById(R.id.fba_tv_entry);
+        button_favorits = findViewById(R.id.fba_b_favorits);
+    }
+
+    private void initFavoritsButton() {
+        if (DefinitionsManager.getDefinitionsManager().getFavoritDefs().size() == 0) {
+            button_favorits.setActivated(false);
+            button_favorits.setPaintFlags(button_favorits.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+            return;
+        }
+        final Context context = this;
+        button_favorits.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent abfrage = new Intent(context, Abfrage_Activity.class);
+                // filter="" sorgt dafür, dass alle Fächer abgefragt werden, aber nur die Favoriten-Defs
+                DefinitionsManager.getDefinitionsManager().setFilter_string("", true);
+                startActivity(abfrage);
+            }
+        });
     }
 
     /**
@@ -89,6 +111,7 @@ public class FachbereichauswahlActivity extends AppCompatActivity  {
     private void initAlleDefinitionenButton() {
         if (DefinitionsManager.getDefinitionsManager().getImportantDefinitions().size() == 0) {
             button_alle_Definitionen.setActivated(false);
+            button_alle_Definitionen.setPaintFlags(button_alle_Definitionen.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
             return;
         }
         final Context context = this;
@@ -96,7 +119,7 @@ public class FachbereichauswahlActivity extends AppCompatActivity  {
             @Override
             public void onClick(View view) {
                 Intent abfrage = new Intent(context, Abfrage_Activity.class);
-                DefinitionsManager.getDefinitionsManager().setFilter_string(""); // filter="" sorgt dafür, dass alle Fächer abgefragt werden
+                DefinitionsManager.getDefinitionsManager().setFilter_string("", false); // filter="" sorgt dafür, dass alle Fächer abgefragt werden
                 startActivity(abfrage);
             }
         });

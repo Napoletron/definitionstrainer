@@ -109,7 +109,7 @@ public class SuchenActivity extends AppCompatActivity {
         // first, add all Definitions with the matching subject
         for (Definition d : definitionList) {
             String faecher = d.getFeacherString();
-            if(faecher.contains(searchText)) {
+            if(faecher.toLowerCase().contains(searchText.toLowerCase())) {
                 relevant_def.add(d);
             }
         }
@@ -117,7 +117,7 @@ public class SuchenActivity extends AppCompatActivity {
         // first, add all Definitions with the matching jahrgang
         for (Definition d : definitionList) {
             String jahrgaenge = d.getJahrgaengeString();
-            if(jahrgaenge.contains(searchText)) {
+            if(jahrgaenge.toLowerCase().contains(searchText.toLowerCase())) {
                 relevant_def.add(d);
             }
         }

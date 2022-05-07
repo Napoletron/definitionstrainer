@@ -12,6 +12,7 @@ import deftrainer.example.definitionstrainer.R;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
@@ -22,10 +23,11 @@ public class DefinitionsManager {
 
     private static DefinitionsManager DEFINITIONSMANAGER = null;
     private List<Definition> all_definitions = null;
-    private List<Definition> important_definitions = null;
+    private List<Definition> important_definitions = null; // alle definitionen mit dem passendem aktuellen Jahrgang
     private String filter_string = "<empty>";
     private Random RANDOM = new Random();
     private int lastDefinitionId;
+    private boolean ask_favorits = false;
 
     /**
      * Diese Methode gibt den Definitionsmanager zurück.
@@ -116,8 +118,10 @@ public class DefinitionsManager {
      * Diese Methode setzt den Filter, z.B. "Verkehrsrecht" oder "Strafprozessrecht", ...
      * @param filter_string Ein Filter für die Fächerauswahl
      */
-    public void setFilter_string(String filter_string) {
+    public void setFilter_string(String filter_string, boolean ask_favorits) {
         this.filter_string = filter_string;
+        this.ask_favorits = ask_favorits;
+        update_important_definitions();
     }
 
     /**
@@ -164,8 +168,14 @@ public class DefinitionsManager {
 
         // das mit den stream sorgt für Ärger... deswegen der längere Weg
         for (Definition definition : important_definitions) {
-            if (definition.istWichtigFuerFach(filter_string)) {
-                relevant_definitions.add(definition);
+            if (ask_favorits) {
+                if (definition.getFavorit()) {
+                    relevant_definitions.add(definition);
+                }
+            } else {
+                if (definition.istWichtigFuerFach(filter_string)) {
+                    relevant_definitions.add(definition);
+                }
             }
         }
         return relevant_definitions;
@@ -493,6 +503,16 @@ public class DefinitionsManager {
             }
         }
         return min_id;
+    }
+
+    public List<Definition> getFavoritDefs() {
+        List<Definition> favorits = new ArrayList<>();
+        for (Definition d : important_definitions) {
+            if (d.getFavorit()) {
+                favorits.add(d);
+            }
+        }
+        return favorits;
     }
 
     /**
