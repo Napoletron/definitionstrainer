@@ -6,6 +6,7 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -17,7 +18,10 @@ import deftrainer.example.definitionstrainer.model.DefinitionsManager;
 import deftrainer.example.definitionstrainer.model.RecyclerViewAdapter;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class SuchenActivity extends AppCompatActivity {
 
@@ -25,6 +29,7 @@ public class SuchenActivity extends AppCompatActivity {
     private Button button_suchen;
     private RecyclerView recyclerView;
     private RecyclerViewAdapter recyclerViewAdapter;
+    private TextView s_tv_results;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +54,7 @@ public class SuchenActivity extends AppCompatActivity {
         editText_suchen = findViewById(R.id.s_tv_suchen);
         button_suchen = findViewById(R.id.s_b_suchen);
         recyclerView = findViewById(R.id.s_rv);
-
+        s_tv_results = findViewById(R.id.s_tv_results);
     }
 
     private void initSuchenButton() {
@@ -93,12 +98,32 @@ public class SuchenActivity extends AppCompatActivity {
         String searchText = editText_suchen.getText().toString();
 
         List<Definition> definitionList = DefinitionsManager.getDefinitionsManager().getAllDefinitions();
-        List<Definition> relevant_def = new ArrayList<>();
+        Set<Definition> relevant_def = new HashSet<>();
+
+        // first, add all Definitions with the matching name
         for (Definition d : definitionList) {
             if (d.getName().toLowerCase().contains(searchText.toLowerCase()))
                 relevant_def.add(d);
         }
 
-        recyclerViewAdapter.setVisibleDefinitions(relevant_def);
+        // first, add all Definitions with the matching subject
+        for (Definition d : definitionList) {
+            String faecher = d.getFeacherString();
+            if(faecher.contains(searchText)) {
+                relevant_def.add(d);
+            }
+        }
+
+        // first, add all Definitions with the matching jahrgang
+        for (Definition d : definitionList) {
+            String jahrgaenge = d.getJahrgaengeString();
+            if(jahrgaenge.contains(searchText)) {
+                relevant_def.add(d);
+            }
+        }
+
+        s_tv_results.setText(relevant_def.size() + " Treffer");
+
+        recyclerViewAdapter.setVisibleDefinitions(new ArrayList<>(relevant_def));
     }
 }

@@ -32,14 +32,22 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/s_tv_suchen" />
 
+    <TextView
+        android:id="@+id/s_tv_results"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="@+id/s_b_suchen"
+        app:layout_constraintTop_toBottomOf="@+id/s_tv_suchen" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/s_rv"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="4dp"
         android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/s_b_suchen"
         app:layout_constraintStart_toStartOf="@+id/s_tv_suchen"
-        app:layout_constraintTop_toBottomOf="@+id/s_tv_suchen" />
+        app:layout_constraintTop_toBottomOf="@+id/s_tv_results" />
 </androidx.constraintlayout.widget.ConstraintLayout>
