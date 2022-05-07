@@ -42,7 +42,7 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/fba_b_facherunterricht"
+                android:id="@+id/fba_b_einsatzwiss"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="4pt"
@@ -53,7 +53,7 @@
                 android:textSize="12sp" />
 
             <Button
-                android:id="@+id/fba_b_streife"
+                android:id="@+id/fba_b_krim"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="4pt"
@@ -70,7 +70,7 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/fba_b_verkehr"
+                android:id="@+id/fba_b_recht"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="4pt"
@@ -80,7 +80,7 @@
                 android:textSize="12sp" />
 
             <Button
-                android:id="@+id/fba_b_kriminalitaet"
+                android:id="@+id/fba_b_sozial"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="4pt"
@@ -98,6 +98,16 @@
             android:layout_weight="1"
             android:background="@color/polizeiblau"
             android:text="@string/all_definitions"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/fba_b_favorits"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="4pt"
+            android:layout_weight="1"
+            android:background="@color/polizeiblau"
+            android:text="@string/favorits"
             android:textSize="14sp" />
 
     </LinearLayout>

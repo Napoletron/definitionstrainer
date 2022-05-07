@@ -183,11 +183,11 @@ public class DefinitionHinzufuegenActivity extends AppCompatActivity{
     private void createDefinition() {
         if (edit_definition == 0){
             int id = DefinitionsManager.getDefinitionsManager().getNextFreeDefinitionID();
-            Definition d = new Definition(id, title, definition, 0, Arrays.asList(fach), Arrays.asList(klasse), true);
+            Definition d = new Definition(id, title, definition, 0, Arrays.asList(fach), Arrays.asList(klasse), true, false);
             DefinitionsManager.getDefinitionsManager().addDefinition(d, this);
         } else {
             Definition definition_to_update =  DefinitionsManager.getDefinitionsManager().getDefinitionByID(definition_id);
-            Definition tmp = new Definition(new Random().nextInt(), title, definition, 0, Arrays.asList(fach), Arrays.asList(klasse), true);
+            Definition tmp = new Definition(new Random().nextInt(), title, definition, 0, Arrays.asList(fach), Arrays.asList(klasse), true, definition_to_update.getFavorit());
             definition_to_update.update_from(tmp);
         }
         Toast.makeText(this, title + " " +getResources().getString(R.string.has_been_added), Toast.LENGTH_SHORT).show();

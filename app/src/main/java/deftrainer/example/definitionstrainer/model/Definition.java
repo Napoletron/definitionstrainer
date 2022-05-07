@@ -19,8 +19,9 @@ public class Definition implements Serializable {
     // gibt an, ob diese Definition vom Nutzer modifiziert wurde oder vom Nutzer erstellt wurde.
     // ist dies der Fall, soll die Definition beim Updaten nicht überschrieben werden.
     private boolean userModified = false;
+    private boolean favorit = false;
 
-    public Definition(int ID, String name, String definition, int skill, List<String> faecher, List<String> jahrgaenge, boolean userModified) {
+    public Definition(int ID, String name, String definition, int skill, List<String> faecher, List<String> jahrgaenge, boolean userModified, boolean favorit) {
         this.ID = ID;
         this.name = name;
         this.definition = definition;
@@ -28,6 +29,7 @@ public class Definition implements Serializable {
         this.faecher = faecher;
         this.jahrgaenge = jahrgaenge;
         this.userModified = userModified;
+        this.favorit = favorit;
     }
 
     public boolean istWichtigFuerFach(String gesuchter_fachname) {
@@ -122,5 +124,13 @@ public class Definition implements Serializable {
         this.jahrgaenge = new_def.getJahrgaenge();
         this.faecher = new_def.getFaecher();
         this.userModified = new_def.isUserModified();
+    }
+
+    public boolean getFavorit() {
+        return favorit;
+    }
+
+    public void setFavorit(boolean newFavorit) {
+        favorit = newFavorit;
     }
 }

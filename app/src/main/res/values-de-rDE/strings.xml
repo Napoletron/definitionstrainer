@@ -56,4 +56,5 @@
     <string name="restricted_content">VS-NfD</string>
     <string name="restricted_content_may_not_be_inserted">Es ist streng untersagt, VS-NfD Inhalte in diese Anwendung einzugeben oder zu speichern!</string>
     <string name="understood">Verstanden</string>
+    <string name="favorits">☑ Favoriten</string>
 </resources>

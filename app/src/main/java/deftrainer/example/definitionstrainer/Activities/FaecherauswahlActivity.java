@@ -2,6 +2,7 @@ package deftrainer.example.definitionstrainer.Activities;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -68,12 +69,13 @@ public class FaecherauswahlActivity  extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         Intent abfrage = new Intent(context, Abfrage_Activity.class);
-                        DefinitionsManager.getDefinitionsManager().setFilter_string(fachname); // nicht optimal... aber funktioniert
+                        DefinitionsManager.getDefinitionsManager().setFilter_string(fachname, false); // nicht optimal... aber funktioniert
                         startActivityForResult(abfrage, 42); //42 is jsut a random number
                     }
                 });
             } else {
                 btnTag.setActivated(false);
+                btnTag.setPaintFlags(btnTag.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
             }
         }
     }

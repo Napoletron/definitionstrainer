@@ -58,6 +58,7 @@ public class JSONReader {
         List<String> faecher = null;
         List<String> jahrgaenge = null;
         boolean userModified = false;
+        boolean favorit = false;
 
         reader.beginObject();
         while (reader.hasNext()) {
@@ -76,13 +77,15 @@ public class JSONReader {
                 name = reader.nextString();
             } else if (entry_name.equals("userModified")) {
                 userModified = reader.nextBoolean();
+            } else if (entry_name.equals("favorit")) {
+                userModified = reader.nextBoolean();
             }
             else {
                 reader.skipValue();
             }
         }
         reader.endObject();
-        return new Definition(id, name, definition, skill, faecher, jahrgaenge, userModified);
+        return new Definition(id, name, definition, skill, faecher, jahrgaenge, userModified, favorit);
     }
 
     private static List<String> readFaecher(JsonReader reader) throws IOException {

@@ -63,5 +63,6 @@
     <string name="understood">Unterstood</string>
     <string name="sozialwissenschaften" translatable="false">Sozialwissenschaften</string>
     <string name="einsatzwissenschaften" translatable="false">Einsatzwissenschaften</string>
-    <string name="recht">Recht</string>
+    <string name="recht" translatable="false">Recht</string>
+    <string name="favorits">☑ Favorits</string>
 </resources>

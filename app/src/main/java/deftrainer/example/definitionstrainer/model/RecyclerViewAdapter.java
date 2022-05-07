@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -45,6 +46,25 @@ public class RecyclerViewAdapter  extends RecyclerView.Adapter<RecyclerViewHolde
         holder.getDefinitionView().setText(def_to_bind.getDefinition());
         holder.getFachView().setText(def_to_bind.getFeacherString());
         holder.getJahrgangView().setText(def_to_bind.getJahrgaengeString());
+        holder.getFavoritCheckBox().setChecked(def_to_bind.getFavorit());
+        holder.getFavoritCheckBox().setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View view) {
+               boolean isChecked = holder.getFavoritCheckBox().isChecked();
+               if (def_to_bind.getFavorit() != isChecked) {
+                   def_to_bind.setFavorit(holder.getFavoritCheckBox().isChecked());
+                   DefinitionsManager.getDefinitionsManager().writeDefinitionsToMemory(context);
+               }
+           }
+        });
+        /*
+        holder.getFavoritCheckBox().setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+            }
+        });
+        */
+
         holder.getView().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
