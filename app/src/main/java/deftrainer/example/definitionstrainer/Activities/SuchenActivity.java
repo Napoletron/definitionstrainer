@@ -159,6 +159,14 @@ public class SuchenActivity extends AppCompatActivity {
             }
         }
 
+        if("favoriten".contains(searchText.toLowerCase())) {
+            for (Definition d : definitionList) {
+                if (d.getFavorit()) {
+                    relevant_def.add(d);
+                }
+            }
+        }
+
         s_tv_results.setText(relevant_def.size() + " Treffer");
 
         recyclerViewAdapter.setVisibleDefinitions(new ArrayList<>(relevant_def));
