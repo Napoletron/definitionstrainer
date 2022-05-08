@@ -5,6 +5,7 @@
     <color name="colorAccent">#03DAC5</color>
     <color name="polizeiblau">#00ACEE</color>
     <color name="polizeihellblau">#8000ACEE</color>
+    <color name="polizeihellhellblau">#4D00ACEE</color>
     <color name="falseRed">#FF0000</color>
     <color name="correctGreen">#0CA60C</color>
     <color name="ButtonGreen">#7C08F600</color>

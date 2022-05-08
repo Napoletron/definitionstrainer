@@ -76,6 +76,7 @@ public class FaecherauswahlActivity  extends AppCompatActivity {
             } else {
                 btnTag.setActivated(false);
                 btnTag.setPaintFlags(btnTag.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+                btnTag.setBackgroundColor(getResources().getColor(R.color.polizeihellhellblau));
             }
         }
     }

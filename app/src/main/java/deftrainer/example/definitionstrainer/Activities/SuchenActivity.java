@@ -5,6 +5,8 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -16,12 +18,12 @@ import deftrainer.example.definitionstrainer.R;
 import deftrainer.example.definitionstrainer.model.Definition;
 import deftrainer.example.definitionstrainer.model.DefinitionsManager;
 import deftrainer.example.definitionstrainer.model.RecyclerViewAdapter;
+import deftrainer.example.definitionstrainer.model.Settings;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.TreeSet;
 
 public class SuchenActivity extends AppCompatActivity {
 
@@ -30,6 +32,8 @@ public class SuchenActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RecyclerViewAdapter recyclerViewAdapter;
     private TextView s_tv_results;
+    private TextView s_tv_showOnly;
+    private CheckBox s_box_showOnly;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +45,22 @@ public class SuchenActivity extends AppCompatActivity {
         initRecylclerview();
         initSuchenButton();
         initSuchenEditText();
+        initTextViewShowOnly();
+        initChipShowOnly();
+    }
+
+    private void initChipShowOnly() {
+        s_box_showOnly.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                search();
+            }
+        });
+    }
+
+    private void initTextViewShowOnly() {
+        String klasse = Settings.getSettings().getKlasse();
+        s_tv_showOnly.setText("Zeige nur "+klasse);
     }
 
     @Override
@@ -55,6 +75,8 @@ public class SuchenActivity extends AppCompatActivity {
         button_suchen = findViewById(R.id.s_b_suchen);
         recyclerView = findViewById(R.id.s_rv);
         s_tv_results = findViewById(R.id.s_tv_results);
+        s_tv_showOnly = findViewById(R.id.s_tv_showOnly);
+        s_box_showOnly = findViewById(R.id.s_box_OnlyJahrgang);
     }
 
     private void initSuchenButton() {
@@ -97,8 +119,23 @@ public class SuchenActivity extends AppCompatActivity {
     private void search() {
         String searchText = editText_suchen.getText().toString();
 
-        List<Definition> definitionList = DefinitionsManager.getDefinitionsManager().getAllDefinitions();
-        Set<Definition> relevant_def = new HashSet<>();
+        List<Definition> allDefinitions = DefinitionsManager.getDefinitionsManager().getAllDefinitions();
+        List<Definition> definitionList = new ArrayList<>();
+
+        if (s_box_showOnly.isChecked()) {
+            String klasse = Settings.getSettings().getKlasse();
+            for (Definition d : allDefinitions) {
+                String s1 = d.getJahrgaengeString().toLowerCase();
+                String s2 = klasse.toLowerCase();
+                if (s1.contains(s2)) {
+                    definitionList.add(d);
+                }
+            }
+        } else {
+            definitionList = allDefinitions;
+        }
+
+        Set<Definition> relevant_def = new TreeSet<>();
 
         // first, add all Definitions with the matching name
         for (Definition d : definitionList) {

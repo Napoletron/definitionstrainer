@@ -37,17 +37,37 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="@+id/s_tv_showOnly"
+        app:layout_constraintStart_toStartOf="@+id/s_tv_suchen"
+        app:layout_constraintTop_toTopOf="@+id/s_tv_showOnly" />
+
+    <CheckBox
+        android:id="@+id/s_box_OnlyJahrgang"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="@+id/s_b_suchen"
-        app:layout_constraintTop_toBottomOf="@+id/s_tv_suchen" />
+        app:layout_constraintTop_toBottomOf="@+id/s_b_suchen" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/s_rv"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="4dp"
         android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/s_b_suchen"
         app:layout_constraintStart_toStartOf="@+id/s_tv_suchen"
-        app:layout_constraintTop_toBottomOf="@+id/s_tv_results" />
+        app:layout_constraintTop_toBottomOf="@+id/s_box_OnlyJahrgang">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <TextView
+        android:id="@+id/s_tv_showOnly"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="4dp"
+        android:layout_marginRight="4dp"
+        android:text="Zeige nur XYZ"
+        app:layout_constraintBottom_toBottomOf="@+id/s_box_OnlyJahrgang"
+        app:layout_constraintEnd_toStartOf="@+id/s_box_OnlyJahrgang"
+        app:layout_constraintTop_toTopOf="@+id/s_box_OnlyJahrgang" />
 </androidx.constraintlayout.widget.ConstraintLayout>
