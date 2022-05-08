@@ -65,4 +65,5 @@
     <string name="einsatzwissenschaften" translatable="false">Einsatzwissenschaften</string>
     <string name="recht" translatable="false">Recht</string>
     <string name="favorits">☑ Favorits</string>
+    <string name="showOnlyJahrgang" translatable="false">Show only xyz</string>
 </resources>

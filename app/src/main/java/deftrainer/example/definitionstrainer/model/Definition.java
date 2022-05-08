@@ -3,7 +3,7 @@ package deftrainer.example.definitionstrainer.model;
 import java.io.Serializable;
 import java.util.List;
 
-public class Definition implements Serializable {
+public class Definition implements Serializable, Comparable{
 
     static final long serialVersionUID =2169084276548728155L;
     private String name;
@@ -132,5 +132,11 @@ public class Definition implements Serializable {
 
     public void setFavorit(boolean newFavorit) {
         favorit = newFavorit;
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        Definition d2 = (Definition)o;
+        return this.getName().compareTo(d2.getName());
     }
 }
