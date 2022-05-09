@@ -63,6 +63,7 @@ public class FachbereichauswahlActivity extends AppCompatActivity  {
     private void initFavoritsButton() {
         if (DefinitionsManager.getDefinitionsManager().getFavoritDefs().size() == 0) {
             button_favorits.setActivated(false);
+            button_favorits.setBackgroundColor(getResources().getColor(R.color.polizeihellhellblau));
             button_favorits.setPaintFlags(button_favorits.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
             return;
         }
@@ -111,6 +112,7 @@ public class FachbereichauswahlActivity extends AppCompatActivity  {
     private void initAlleDefinitionenButton() {
         if (DefinitionsManager.getDefinitionsManager().getImportantDefinitions().size() == 0) {
             button_alle_Definitionen.setActivated(false);
+            button_alle_Definitionen.setBackgroundColor(getResources().getColor(R.color.polizeihellhellblau));
             button_alle_Definitionen.setPaintFlags(button_alle_Definitionen.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
             return;
         }

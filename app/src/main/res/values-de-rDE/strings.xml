@@ -35,8 +35,8 @@
     <string name="reset_was_successful">Reset war erfolgreich</string>
     <string name="delete">Löschen</string>
     <string name="do_you_want_to_delete">"Löschen von "</string>
-    <string name="description_max_Skill">Die Steigerung für eine richtig getippte Definition. Standard ist 2.</string>
-    <string name="description_max_voc_to_learn">Die Abzug für eine falsch getippte Definition. Standard ist 4.</string>
+    <string name="description_max_Skill">Die Steigerung für eine richtig getippte Definition. Standard ist 5.</string>
+    <string name="description_max_voc_to_learn">Die Abzug für eine falsch getippte Definition. Standard ist 10.</string>
     <string name="save">Speichern</string>
     <string name="settings_were_saved">Einstellungen wurden gespeichert</string>
     <string name="X_default_defintions_were_found_do_you_want_to_add_them">Standarddefinitionen wurde gefunden. Möchtest du diese zu deiner Sammlung hinzufügen? (Dies könnte einen Moment dauern)</string>

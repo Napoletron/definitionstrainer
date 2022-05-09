@@ -39,8 +39,8 @@
     <string name="definitions_were_added">Definitions were added</string>
     <string name="reset_was_successful">Reset was successful</string>
     <string name="delete">Delete</string>
-    <string name="description_max_Skill">The increase for a correctly guessed definition. Standard is 2.</string>
-    <string name="description_max_voc_to_learn">The decrease for a false guessed definition. Standard is 4.</string>
+    <string name="description_max_Skill">The increase for a correctly guessed definition. Standard is 5.</string>
+    <string name="description_max_voc_to_learn">The decrease for a false guessed definition. Standard is 10.</string>
     <string name="save">Save</string>
     <string name="settings_were_saved">Settings were saved</string>
     <string name="X_default_defintions_were_found_do_you_want_to_add_them">default definitions were found. Do you want to add them? (This could take a view moments)</string>
