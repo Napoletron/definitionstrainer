@@ -351,6 +351,7 @@ public class DefinitionsManager {
                 }
             }
         }
+
         return classes;
     }
 

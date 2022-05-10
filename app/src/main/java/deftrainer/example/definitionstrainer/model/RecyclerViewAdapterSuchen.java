@@ -5,25 +5,24 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CompoundButton;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import deftrainer.example.definitionstrainer.Activities.DefinitionHinzufuegenActivity;
-import deftrainer.example.definitionstrainer.Activities.RecyclerViewHolder;
+import deftrainer.example.definitionstrainer.Activities.RecyclerViewHolderSuchen;
 import deftrainer.example.definitionstrainer.R;
 
 import java.util.List;
 
-public class RecyclerViewAdapter  extends RecyclerView.Adapter<RecyclerViewHolder> {
+public class RecyclerViewAdapterSuchen extends RecyclerView.Adapter<RecyclerViewHolderSuchen> {
 
     private List<Definition> visibleDefinitions;
-    private Context context;
+    private Context definitionHinzufuegenActivity;
 
-    public RecyclerViewAdapter(List<Definition> visibleDefinitions, Context context) {
+    public RecyclerViewAdapterSuchen(List<Definition> visibleDefinitions, Context definitionHinzufuegenActivity) {
         this.visibleDefinitions = visibleDefinitions;
-        this.context = context;
+        this.definitionHinzufuegenActivity = definitionHinzufuegenActivity;
     }
 
     @Override
@@ -33,13 +32,13 @@ public class RecyclerViewAdapter  extends RecyclerView.Adapter<RecyclerViewHolde
 
     @NonNull
     @Override
-    public RecyclerViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public RecyclerViewHolderSuchen onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.frame_layout, parent, false);
-        return new RecyclerViewHolder(view);
+        return new RecyclerViewHolderSuchen(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerViewHolderSuchen holder, int position) {
         final Definition def_to_bind = visibleDefinitions.get(position);
 
         holder.getTitleView().setText(def_to_bind.getName());
@@ -53,7 +52,7 @@ public class RecyclerViewAdapter  extends RecyclerView.Adapter<RecyclerViewHolde
                boolean isChecked = holder.getFavoritCheckBox().isChecked();
                if (def_to_bind.getFavorit() != isChecked) {
                    def_to_bind.setFavorit(holder.getFavoritCheckBox().isChecked());
-                   DefinitionsManager.getDefinitionsManager().writeDefinitionsToMemory(context);
+                   DefinitionsManager.getDefinitionsManager().writeDefinitionsToMemory(definitionHinzufuegenActivity);
                }
            }
         });
@@ -72,10 +71,10 @@ public class RecyclerViewAdapter  extends RecyclerView.Adapter<RecyclerViewHolde
                 // askToDeleteDefinition(def_to_bind);
 
                 // start the DefinitionHinzufügenActivity and pass the matching ID of the Definition
-                Intent intent = new Intent(context, DefinitionHinzufuegenActivity.class);
+                Intent intent = new Intent(definitionHinzufuegenActivity, DefinitionHinzufuegenActivity.class);
                 intent.putExtra(DefinitionHinzufuegenActivity.EXTRA_EDIT_DEFINITION, "1");
                 intent.putExtra(DefinitionHinzufuegenActivity.EXTRA_DEFINITION_ID, ""+def_to_bind.getID());
-                context.startActivity(intent);
+                definitionHinzufuegenActivity.startActivity(intent);
             }
         });
     }

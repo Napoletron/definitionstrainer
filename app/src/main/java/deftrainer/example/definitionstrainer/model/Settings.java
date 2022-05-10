@@ -9,15 +9,15 @@ public class Settings implements Serializable {
 
     static final long serialVersionUID = 31415962123123L;
 
-    public static final int STANDARD_INCREASE = 2;
-    public static final int STANDARD_DECREASE = 4;
+    public static final int STANDARD_INCREASE = 5;
+    public static final int STANDARD_DECREASE = 10;
     public static final int STANDARD_MAX_SKILL = 10;
     public static final int STANDARD_MIN_SKILL = 0;
     // Version number = XXYYZZ where
     // XX = Version
     // YY = Feature
     // ZZ = Bug-fix
-    public static final int APP_VERSION = 11602;
+    public static final int APP_VERSION = 11605;
     public static boolean TESTING = false;
 
     // The value at which a definitions skill is increased or decreased if guessed correct or wrong

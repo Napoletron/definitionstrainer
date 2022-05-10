@@ -109,7 +109,8 @@ public class EinstellungenActivity extends AppCompatActivity {
      * Die Einstellungen werden ausgelesen und in das Zahlenfeld eingefügt.
      */
     private void update_editTextFields() {
-        set_et_increase.setText(String.valueOf(Settings.getSettings().getIncrease()));
+        String s1 = String.valueOf(Settings.getSettings().getIncrease());
+        set_et_increase.setText(s1);
         set_et_decrease.setText(String.valueOf(Settings.getSettings().getDecrease()));
     }
 
@@ -201,7 +202,8 @@ public class EinstellungenActivity extends AppCompatActivity {
     private static final int IMPORT = 41;
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults){
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == EXPORT) {
             // run through all the permissions
             for (int i = 0; i < permissions.length; i++) {

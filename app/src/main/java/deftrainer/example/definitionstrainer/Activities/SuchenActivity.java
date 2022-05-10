@@ -17,7 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import deftrainer.example.definitionstrainer.R;
 import deftrainer.example.definitionstrainer.model.Definition;
 import deftrainer.example.definitionstrainer.model.DefinitionsManager;
-import deftrainer.example.definitionstrainer.model.RecyclerViewAdapter;
+import deftrainer.example.definitionstrainer.model.RecyclerViewAdapterSuchen;
 import deftrainer.example.definitionstrainer.model.Settings;
 
 import java.util.ArrayList;
@@ -30,7 +30,7 @@ public class SuchenActivity extends AppCompatActivity {
     private EditText editText_suchen;
     private Button button_suchen;
     private RecyclerView recyclerView;
-    private RecyclerViewAdapter recyclerViewAdapter;
+    private RecyclerViewAdapterSuchen recyclerViewAdapterSuchen;
     private TextView s_tv_results;
     private TextView s_tv_showOnly;
     private CheckBox s_box_showOnly;
@@ -66,7 +66,7 @@ public class SuchenActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        recyclerViewAdapter.notifyDataSetChanged();
+        recyclerViewAdapterSuchen.notifyDataSetChanged();
         search();
     }
 
@@ -109,10 +109,10 @@ public class SuchenActivity extends AppCompatActivity {
 
     private void initRecylclerview() {
 
-        recyclerViewAdapter = new RecyclerViewAdapter(DefinitionsManager.getDefinitionsManager().getAllDefinitions(), this);
+        recyclerViewAdapterSuchen = new RecyclerViewAdapterSuchen(DefinitionsManager.getDefinitionsManager().getAllDefinitions(), this);
 
         // Add the following lines to create RecyclerView
-        recyclerView.setAdapter(recyclerViewAdapter);
+        recyclerView.setAdapter(recyclerViewAdapterSuchen);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
@@ -169,6 +169,6 @@ public class SuchenActivity extends AppCompatActivity {
 
         s_tv_results.setText(relevant_def.size() + " Treffer");
 
-        recyclerViewAdapter.setVisibleDefinitions(new ArrayList<>(relevant_def));
+        recyclerViewAdapterSuchen.setVisibleDefinitions(new ArrayList<>(relevant_def));
     }
 }
