@@ -14,12 +14,17 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import deftrainer.example.definitionstrainer.R;
 import deftrainer.example.definitionstrainer.model.Definition;
 import deftrainer.example.definitionstrainer.model.DefinitionsManager;
 import deftrainer.example.definitionstrainer.model.Fachbereich;
+import deftrainer.example.definitionstrainer.model.RecyclerViewAdapterClasses;
+import deftrainer.example.definitionstrainer.model.RecyclerViewAdapterSuchen;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
@@ -31,15 +36,16 @@ public class DefinitionHinzufuegenActivity extends AppCompatActivity{
 
     private EditText editText_title;
     private EditText editText_definition;
+    private RecyclerView recycle_view_class;
+    private RecyclerViewAdapterClasses recyclerViewAdapterClasses;
     private Spinner spinner_fach;
-    private Spinner spinner_klasse;
     private Button button_fertig;
     private Button button_delete;
+    private Button button_add_class;
 
     private String title;
     private String definition;
     private String fach;
-    private String klasse;
 
     // It is possible to acces the activity in two ways:
     // 1) via the main page to add a new Definition
@@ -68,9 +74,10 @@ public class DefinitionHinzufuegenActivity extends AppCompatActivity{
 
         getAllViews();
         initSpinnerFach();
-        initSpinnerKlasse();
+        initRecycleViewClasses();
         initFertigButton();
         initDeleteButton();
+        initAddClassButton();
 
         insert_values_if_definition_is_edited();
     }
@@ -79,12 +86,23 @@ public class DefinitionHinzufuegenActivity extends AppCompatActivity{
         editText_title = findViewById(R.id.dhf_et_title);
         editText_definition = findViewById(R.id.dhf_met_definition);
         spinner_fach = findViewById(R.id.dhf_spin_fach);
-        spinner_klasse = findViewById(R.id.dhf_spin_class);
+        recycle_view_class = findViewById(R.id.dhf_rv_classes);
         button_fertig = findViewById(R.id.dhf_b_fertig);
         button_delete = findViewById(R.id.dhf_b_delete);
+        button_add_class = findViewById(R.id.dhf_b_addClass);
+    }
+
+    private void initAddClassButton() {
+        button_add_class.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                addClassField(DefinitionsManager.getDefinitionsManager().getAllClasses().get(0));
+            }
+        });
     }
 
     private void initSpinnerFach() {
+
         List<String> faecher = Fachbereich.getAllFaecherOfAllFields();
         ArrayAdapter<String> aa = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, faecher);
         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -103,23 +121,15 @@ public class DefinitionHinzufuegenActivity extends AppCompatActivity{
         });
     }
 
-    private void initSpinnerKlasse() {
-        List<String> klassen = DefinitionsManager.getDefinitionsManager().getAllClasses();
-        ArrayAdapter<String> aa = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, klassen);
-        aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner_klasse.setAdapter(aa);
+    private void initRecycleViewClasses() {
+        recyclerViewAdapterClasses = new RecyclerViewAdapterClasses(this);
+        // Add the following lines to create RecyclerView
+        recycle_view_class.setAdapter(recyclerViewAdapterClasses);
+        recycle_view_class.setLayoutManager(new LinearLayoutManager(this));
 
-        spinner_klasse.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                klasse = parent.getItemAtPosition(position).toString();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-                // stub
-            }
-        });
+        if (edit_definition != 1 ) {
+            addClassField(DefinitionsManager.getDefinitionsManager().getAllClasses().get(0));
+        }
     }
 
     private void initFertigButton() {
@@ -181,13 +191,14 @@ public class DefinitionHinzufuegenActivity extends AppCompatActivity{
     }
 
     private void createDefinition() {
+        //TODO: Spinner anpassen
         if (edit_definition == 0){
             int id = DefinitionsManager.getDefinitionsManager().getNextFreeDefinitionID();
-            Definition d = new Definition(id, title, definition, 0, Arrays.asList(fach), Arrays.asList(klasse), true, false);
+            Definition d = new Definition(id, title, definition, 0, Arrays.asList(fach), getSelectedClasses(), true, false);
             DefinitionsManager.getDefinitionsManager().addDefinition(d, this);
         } else {
             Definition definition_to_update =  DefinitionsManager.getDefinitionsManager().getDefinitionByID(definition_id);
-            Definition tmp = new Definition(new Random().nextInt(), title, definition, 0, Arrays.asList(fach), Arrays.asList(klasse), true, definition_to_update.getFavorit());
+            Definition tmp = new Definition(new Random().nextInt(), title, definition, 0, Arrays.asList(fach), getSelectedClasses(), true, definition_to_update.getFavorit());
             definition_to_update.update_from(tmp);
         }
         Toast.makeText(this, title + " " +getResources().getString(R.string.has_been_added), Toast.LENGTH_SHORT).show();
@@ -199,12 +210,29 @@ public class DefinitionHinzufuegenActivity extends AppCompatActivity{
             Definition definition = DefinitionsManager.getDefinitionsManager().getDefinitionByID(definition_id);
             editText_title.setText(definition.getName());
             editText_definition.setText(definition.getDefinition());
-            int pos_class = DefinitionsManager.getDefinitionsManager().getAllClasses().indexOf(definition.getJahrgaenge().get(0));
-            spinner_klasse.setSelection(pos_class);
+
+            // init classes spinners
+            for (String klasse : definition.getJahrgaenge()) {
+                addClassField(klasse);
+            }
+
+            // init fach spinner
             int pos_fach = Fachbereich.getAllFaecherOfAllFields().indexOf(definition.getFaecher().get(0));
             spinner_fach.setSelection(pos_fach);
 
             button_fertig.setText(getResources().getString(R.string.update));
         }
+    }
+
+    public List<String> getSelectedClasses() {
+        return recyclerViewAdapterClasses.getClasses();
+    }
+
+    public void addClassField(String className) {
+        recyclerViewAdapterClasses.addClass(className);
+    }
+
+    public void removeClassField() {
+
     }
 }
