@@ -2,6 +2,7 @@ package deftrainer.example.definitionstrainer.model;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Locale;
 
 public class Definition implements Serializable, Comparable{
 
@@ -137,6 +138,8 @@ public class Definition implements Serializable, Comparable{
     @Override
     public int compareTo(Object o) {
         Definition d2 = (Definition)o;
-        return this.getName().compareTo(d2.getName());
+        String name1 = this.getName().toLowerCase(Locale.ROOT);
+        String name2 = d2.getName().toLowerCase(Locale.ROOT);
+        return name1.compareTo(name2);
     }
 }
