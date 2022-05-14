@@ -50,10 +50,11 @@
 
     <TextView
         android:id="@+id/frameLayout_title"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         app:layout_constraintBottom_toBottomOf="@+id/frameLayout_favorit"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/frameLayout_favorit"
         app:layout_constraintTop_toTopOf="@+id/frameLayout_favorit"
         tools:text="@string/title" />
