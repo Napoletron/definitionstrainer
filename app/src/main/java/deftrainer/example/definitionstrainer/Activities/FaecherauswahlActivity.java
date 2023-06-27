@@ -48,8 +48,8 @@ public class FaecherauswahlActivity  extends AppCompatActivity {
         LinearLayout button_container = findViewById(R.id.button_container);
 
         for(Fachbereich.Fach fach : fachbereich.fachliste) {
-            int total_defs = DefinitionsManager.getDefinitionsManager().getNumberOfDefinitionsOfThatSubject(fach.fachname);
-            int mastered_def = DefinitionsManager.getDefinitionsManager().getNumberOfMasteredDefinitionsOfThatSubject(fach.fachname);
+            int total_defs = DefinitionsManager.getDefinitionsManager().getNumberOfImportantDefinitionsOfThatSubject(fach.fachname);
+            int mastered_def = DefinitionsManager.getDefinitionsManager().getNumberOfImportantMasteredDefinitionsOfThatSubject(fach.fachname);
 
 
             Button btnTag = new Button(this);

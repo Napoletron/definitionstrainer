@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import deftrainer.example.definitionstrainer.R;
 import deftrainer.example.definitionstrainer.model.Definition;
 import deftrainer.example.definitionstrainer.model.DefinitionsManager;
+import deftrainer.example.definitionstrainer.model.MyTagHandler;
 import deftrainer.example.definitionstrainer.model.Settings;
 
 import java.util.ArrayList;
@@ -75,7 +76,8 @@ public class Abfrage_Activity extends AppCompatActivity {
         button_aufloesen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                textview_definition_definition.setText(currentDefinition.getDefinition());
+                System.out.println(currentDefinition.getDefinition());
+                textview_definition_definition.setText(android.text.Html.fromHtml(currentDefinition.getDefinition(), null, new MyTagHandler()));
                 button_aufloesen.setVisibility(View.INVISIBLE);
                 button_konnteIch.setVisibility(View.VISIBLE);
                 button_besserNochmal.setVisibility(View.VISIBLE);

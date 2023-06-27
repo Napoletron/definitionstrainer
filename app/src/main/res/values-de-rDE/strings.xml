@@ -7,7 +7,7 @@
     <string name="has_been_added">wurde hinzugefügt</string>
     <string name="export_was_successful">Exportieren war erfolgreich</string>
     <string name="search">Suchen...</string>
-    <string name="do_you_want_to_reset_the_skill">Willst du den Skill von allen Definitionen zurücksetzten?</string>
+    <string name="do_you_want_to_reset_the_skill_of">Willst du den Skill von diesen Definitionen zurücksetzten:</string>
     <string name="do_you_want_to_reset_the_app">Willst du die Anwendung auf Werkseinstellungen zurücksetzen?</string>
     <string name="import_and_overwrite_definitions">Hinzufügen von neuen Definitionen zu bestehender Sammlung? Dies könnte eine Weile dauern.</string>
     <string name="import_was_successful">Import war erfolgreich</string>
@@ -52,7 +52,7 @@
     <string name="gemeistert">gemeistert.</string>
     <string name="you_need_to_grant_permission_to_access_the_external_storage">Zugriff auf den externen Speicher verweigert. Bitte stimme der Frage für den Zugriff auf den Speicher zu.</string>
     <string name="a_picture_with_questionmarks">Ein Bild mit Fragezeichen darauf</string>
-    <string name="add_definition">Definition. Es darf kein VS-NfD Inhalt eingegeben werden!</string>
+    <string name="add_definition">Definition. Es darf kein VS-NfD Inhalt eingegeben werden! Die Definition muss in HTML ausgedrückt werden:  Beispiel: <ol><lx>Tatbestand<ol><lx>Objektiver Tatbestand<ol><lx>OTB eins</lx><lx>OTB zwei</lx></ol></lx><lx>Subjektiver Tatbestand</lx></ol></lx><lx>Rechtswidrigkeit</lx><lx>Schuld</lx></ol></string>
     <string name="restricted_content">VS-NfD</string>
     <string name="restricted_content_may_not_be_inserted">Es ist streng untersagt, VS-NfD Inhalte in diese Anwendung einzugeben oder zu speichern!</string>
     <string name="understood">Verstanden</string>

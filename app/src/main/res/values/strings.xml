@@ -7,7 +7,7 @@
     <string name="export_was_successful">Export was successful</string>
     <string name="ok" translatable="false">OK</string>
     <string name="cancel" translatable="false">Cancel</string>
-    <string name="do_you_want_to_reset_the_skill">Do you want to reset the skill of all definitions?</string>
+    <string name="do_you_want_to_reset_the_skill_of">Do you want to reset the skill of</string>
     <string name="do_you_want_to_reset_the_app">Do you want to reset the app completly?</string>
     <string name="import_and_overwrite_definitions">Add new definitions to the existing collection? This could take a while.</string>
     <string name="area_selection">Area selection</string>
@@ -57,7 +57,7 @@
     <string name="gemeistert"></string>
     <string name="you_need_to_grant_permission_to_access_the_external_storage">Can\'t Export/Import due to missing permission. Please grant the permission to access the storage.</string>
     <string name="a_picture_with_questionmarks">A picture with questionmarks on it</string>
-    <string name="add_definition">Definition. No restricted content may be inserted here!</string>
+    <string name="add_definition">Definition. No restricted content may be inserted here! The Definition has to be expressed in HTML-language. Example: <ol><lx>Tatbestand<ol><lx>Objektiver Tatbestand<ol><lx>OTB eins</lx><lx>OTB zwei</lx></ol></lx><lx>Subjektiver Tatbestand</lx></ol></lx><lx>Rechtswidrigkeit</lx><lx>Schuld</lx></ol></string>
     <string name="restricted_content">Restricted Content</string>
     <string name="restricted_content_may_not_be_inserted">It is forbidden to store restricted content (VS-NfD) in this App!</string>
     <string name="understood">Unterstood</string>

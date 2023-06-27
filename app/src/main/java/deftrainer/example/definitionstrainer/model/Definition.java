@@ -33,6 +33,14 @@ public class Definition implements Serializable, Comparable{
         this.favorit = favorit;
     }
 
+    public boolean isImportantForClass(String classname) {
+        for (String fach : jahrgaenge) {
+            if (fach.toLowerCase().contains(classname.toLowerCase()))
+                return true;
+        }
+        return false;
+    }
+
     public boolean istWichtigFuerFach(String gesuchter_fachname) {
         for (String fach : faecher) {
             if (fach.toLowerCase().contains(gesuchter_fachname.toLowerCase()))
@@ -138,8 +146,8 @@ public class Definition implements Serializable, Comparable{
     @Override
     public int compareTo(Object o) {
         Definition d2 = (Definition)o;
-        String name1 = this.getName().toLowerCase(Locale.ROOT);
-        String name2 = d2.getName().toLowerCase(Locale.ROOT);
+        String name1 = this.getName().toLowerCase(Locale.ROOT)+this.getID();
+        String name2 = d2.getName().toLowerCase(Locale.ROOT)+d2.getID();
         return name1.compareTo(name2);
     }
 }

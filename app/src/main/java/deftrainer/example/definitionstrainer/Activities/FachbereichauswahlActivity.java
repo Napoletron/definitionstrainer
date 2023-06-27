@@ -128,7 +128,7 @@ public class FachbereichauswahlActivity extends AppCompatActivity  {
     }
 
     private void initEntryText() {
-        int number_masterd_defs = DefinitionsManager.getDefinitionsManager().getTotalNumberOfMasteredDefs();
+        int number_masterd_defs = DefinitionsManager.getDefinitionsManager().getTotalNumberOfMasteredImportantDefs();
         int number_total_defs = DefinitionsManager.getDefinitionsManager().getImportantDefinitions().size();
         String s1 = getResources().getString(R.string.you_have_mastered);
         String s2 = getResources().getString(R.string.of);
