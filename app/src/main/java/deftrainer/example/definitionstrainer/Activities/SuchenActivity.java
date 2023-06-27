@@ -3,6 +3,7 @@ package deftrainer.example.definitionstrainer.Activities;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -143,7 +144,7 @@ public class SuchenActivity extends AppCompatActivity {
                 relevant_def.add(d);
         }
 
-        // first, add all Definitions with the matching subject
+        // second, add all Definitions with the matching subject
         for (Definition d : definitionList) {
             String faecher = d.getFeacherString();
             if(faecher.toLowerCase().contains(searchText.toLowerCase())) {
@@ -151,7 +152,7 @@ public class SuchenActivity extends AppCompatActivity {
             }
         }
 
-        // first, add all Definitions with the matching jahrgang
+        // third, add all Definitions with the matching jahrgang
         for (Definition d : definitionList) {
             String jahrgaenge = d.getJahrgaengeString();
             if(jahrgaenge.toLowerCase().contains(searchText.toLowerCase())) {

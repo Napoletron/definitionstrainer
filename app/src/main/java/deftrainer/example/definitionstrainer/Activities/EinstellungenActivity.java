@@ -31,6 +31,7 @@ import deftrainer.example.definitionstrainer.model.Settings;
 import deftrainer.example.definitionstrainer.model.StorageManager;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 public class EinstellungenActivity extends AppCompatActivity {
@@ -46,6 +47,7 @@ public class EinstellungenActivity extends AppCompatActivity {
     private EditText set_et_increase;
     private EditText set_et_decrease;
     private Spinner set_spin_class;
+    private ArrayAdapter<String> aa;
     private TextView set_tv_version;
 
     @Override
@@ -67,10 +69,22 @@ public class EinstellungenActivity extends AppCompatActivity {
         update_spinner();
     }
 
+    private List<String> getClassSpinnerText(List<String> classes) {
+        List<String> classesText = new ArrayList<>();
+        for (String c : classes) {
+            int all = DefinitionsManager.getDefinitionsManager().getNumberOfAllDefinitionsOfThatClass(c);
+            int mastered = DefinitionsManager.getDefinitionsManager().getNumberOfAllMasteredDefinitionsOfThatClass(c);
+            String classText = String.format("%s (%d/%d)", c, mastered, all);
+            classesText.add(classText);
+        }
+        return classesText;
+    }
+
     private void initClassSpinner() {
         final Context context = this;
-        List<String> klassen = DefinitionsManager.getDefinitionsManager().getAllClasses();
-        ArrayAdapter<String> aa = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, klassen);
+        List<String> classes = DefinitionsManager.getDefinitionsManager().getAllClasses();
+        List<String> classesText = getClassSpinnerText(classes);
+        aa = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, classesText);
         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         set_spin_class.setAdapter(aa);
 
@@ -115,6 +129,12 @@ public class EinstellungenActivity extends AppCompatActivity {
     }
 
     private void update_spinner() {
+        List<String> classes = DefinitionsManager.getDefinitionsManager().getAllClasses();
+        List<String> classesText = getClassSpinnerText(classes);
+        aa.clear();
+        aa.addAll(classesText);
+        aa.notifyDataSetChanged();
+
         String default_klasse = Settings.getSettings().getKlasse();
         int pos = DefinitionsManager.getDefinitionsManager().getAllClasses().indexOf(default_klasse);
         set_spin_class.setSelection(pos);
@@ -256,7 +276,7 @@ public class EinstellungenActivity extends AppCompatActivity {
             public void onClick(View view) {
                 AlertDialog.Builder adb = new AlertDialog.Builder(context);
                 adb.setTitle(R.string.reset);
-                adb.setMessage(R.string.do_you_want_to_reset_the_skill);
+                adb.setMessage(getString(R.string.do_you_want_to_reset_the_skill_of) + " " +Settings.getSettings().getKlasse() + "?");
                 adb.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -311,6 +331,7 @@ public class EinstellungenActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         setSkillToMax();
+                        update_spinner();
                     }
                 });
                 adb.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
@@ -378,6 +399,7 @@ public class EinstellungenActivity extends AppCompatActivity {
             d.resetSkill();
         }
         DefinitionsManager.getDefinitionsManager().writeDefinitionsToMemory(this);
+        update_spinner();
         Toast.makeText(this, R.string.skill_reset_successful, Toast.LENGTH_SHORT).show();
     }
 

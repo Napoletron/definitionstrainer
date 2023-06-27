@@ -12,7 +12,6 @@ import deftrainer.example.definitionstrainer.R;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
@@ -42,7 +41,7 @@ public class DefinitionsManager {
     }
 
     /**
-     * create a list of canidates that might be added to the list
+     * create a list of candidates that might be added to the list
      * this speeds up the adding process
      */
     public List<Definition> getCandidatesToAdd(List<Definition> newDefinitions) {
@@ -268,15 +267,35 @@ public class DefinitionsManager {
         StorageManager.storeInternalFile(StorageManager.PATHTODEFINITIONSOBJ, all_definitions, c);
     }
 
-    public int getNumberOfDefinitionsOfThatSubject(final String str) {
-        List<String> l = new ArrayList<>();
-        l.add(str);
-        return getNumberOfDefinitionsOfThatSubject(l);
-    }
-
-    public int getNumberOfDefinitionsOfThatSubject(List<String> subjects) {
+    public int getTotalNumberOfMasteredImportantDefs() {
         int n = 0;
         for (Definition d : important_definitions) {
+            if (d.getSkill() == Settings.getSettings().getMaxSkill()) {
+                n++;
+            }
+        }
+        return n;
+    }
+
+    public int getNumberOfAllDefinitionsOfThatSubject(final String str) {
+        List<String> l = new ArrayList<>();
+        l.add(str);
+        return getNumberOfAllDefinitionsOfThatSubject(l);
+    }
+
+    public int getNumberOfAllMasteredDefinitionsOfThatSubject(final String str) {
+        List<String> l = new ArrayList<>();
+        l.add(str);
+        return getNumberOfAllMasteredDefinitionsOfThatSubject(l);
+    }
+
+    public int getNumberOfAllDefinitionsOfThatSubject(List<String> subjects) {
+        return getNumberOfDefinitionsOfList(subjects, all_definitions);
+    }
+
+    private int getNumberOfDefinitionsOfList(List<String> subjects, List<Definition> defs) {
+        int n = 0;
+        for (Definition d : defs) {
             for (String subject: subjects) {
                 if (d.istWichtigFuerFach(subject)) {
                     n++;
@@ -287,29 +306,57 @@ public class DefinitionsManager {
         return n;
     }
 
-    public int getTotalNumberOfMasteredDefs() {
+    private int getNumberOfMasteredDefinitionsOfList(List<String> subjects, List<Definition> defs) {
         int n = 0;
-        for (Definition d : important_definitions) {
-            if (d.getSkill() == Settings.getSettings().getMaxSkill()) {
+        for (Definition d : defs) {
+            for (String subject : subjects) {
+                if (d.istWichtigFuerFach(subject) && d.getSkill() == Settings.getSettings().getMaxSkill()) {
+                    n++;
+                }
+            }
+        }
+        return n;
+    }
+
+    public int getNumberOfAllMasteredDefinitionsOfThatSubject(List<String> subjects) {
+        return getNumberOfMasteredDefinitionsOfList(subjects, all_definitions);
+    }
+
+    public int getNumberOfImportantDefinitionsOfThatSubject(final String str) {
+        List<String> l = new ArrayList<>();
+        l.add(str);
+        return getNumberOfImportantDefinitionsOfThatSubject(l);
+    }
+
+    public int getNumberOfImportantDefinitionsOfThatSubject(List<String> subjects) {
+        return getNumberOfDefinitionsOfList(subjects, important_definitions);
+    }
+
+    public int getNumberOfImportantMasteredDefinitionsOfThatSubject(final String str) {
+        List<String> l = new ArrayList<>();
+        l.add(str);
+        return getNumberOfImportantMasteredDefinitionsOfThatSubject(l);
+    }
+
+    public int getNumberOfImportantMasteredDefinitionsOfThatSubject(List<String> subjects) {
+        return getNumberOfMasteredDefinitionsOfList(subjects, important_definitions);
+    }
+
+    public int getNumberOfAllDefinitionsOfThatClass(String className) {
+        int n = 0;
+        for (Definition d : all_definitions) {
+            if (d.isImportantForClass(className)) {
                 n++;
             }
         }
         return n;
     }
 
-    public int getNumberOfMasteredDefinitionsOfThatSubject(final String str) {
-        List<String> l = new ArrayList<>();
-        l.add(str);
-        return getNumberOfMasteredDefinitionsOfThatSubject(l);
-    }
-
-    public int getNumberOfMasteredDefinitionsOfThatSubject(List<String> subjects) {
+    public int getNumberOfAllMasteredDefinitionsOfThatClass(String className) {
         int n = 0;
-        for (Definition d : important_definitions) {
-            for (String subject : subjects) {
-                if (d.istWichtigFuerFach(subject) && d.getSkill() == Settings.getSettings().getMaxSkill()) {
-                    n++;
-                }
+        for (Definition d : all_definitions) {
+            if (d.isImportantForClass(className) && d.getSkill()==Settings.getSettings().getMaxSkill()) {
+                n++;
             }
         }
         return n;
@@ -326,16 +373,6 @@ public class DefinitionsManager {
         //classes.add("20S"); "20 S" --> "Grundausbildung"
 
         classes.add("Grundausbildung");
-
-        classes.add("GS I VOS");
-        classes.add("GS II VOS");
-        classes.add("HS I VOS");
-        classes.add("HS II VOS");
-
-        classes.add("GS I K-IT");
-        classes.add("GS II K-IT");
-        classes.add("HS I K-IT");
-        classes.add("HS II K-IT");
 
         for (Definition d : all_definitions) {
             for (String s : d.getJahrgaenge()) {

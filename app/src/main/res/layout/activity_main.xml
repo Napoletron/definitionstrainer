@@ -86,7 +86,7 @@
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:background="@drawable/infoicon256"
+        android:background="@android:drawable/ic_menu_info_details"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="@+id/button_einstellungen"
         app:layout_constraintStart_toStartOf="@+id/linearLayout"
