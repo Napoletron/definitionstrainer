@@ -17,7 +17,7 @@ public class Settings implements Serializable {
     // XX = Version
     // YY = Feature
     // ZZ = Bug-fix
-    public static final int APP_VERSION = 11836;
+    public static final int APP_VERSION = 11837;
     public static boolean TESTING = false;
 
     // The value at which a definitions skill is increased or decreased if guessed correct or wrong
@@ -27,7 +27,7 @@ public class Settings implements Serializable {
     private boolean ASK_AGAIN = true;
     private boolean FIRST_INSTALL = true;
     // the current version number
-    private int THIS_VERSION = 0;
+    private int THIS_VERSION;
     // a list of all classes
     private String klasse;
 
