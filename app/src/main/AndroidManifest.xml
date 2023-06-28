@@ -43,7 +43,7 @@
         <activity android:screenOrientation="portrait" android:name=".Activities.EinstellungenActivity" />
         <activity android:screenOrientation="portrait" android:name=".Activities.FachbereichauswahlActivity" />
         <activity android:screenOrientation="portrait" android:name=".Activities.AboutActivity" />
-        <activity android:screenOrientation="portrait" android:name=".Activities.MainActivity">
+        <activity android:screenOrientation="portrait" android:name=".Activities.MainActivity" android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
