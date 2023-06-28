@@ -5,12 +5,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 import deftrainer.example.definitionstrainer.R;
+import deftrainer.example.definitionstrainer.model.StorageManager;
 
 public class AboutActivity extends AppCompatActivity {
 
     private static String text = ""+
-            "==  Über diese Anwendung ==\n" +
+            "<h2>Über diese Anwendung</h2>" +
             "Diese Anwendung soll dem Benutzer helfen, die Definitionen zu lernen," +
             "welche ihm in der Grundausbildung als Polizeikommissaranwärter in Baden-Württemberg begegnen.\n" +
             "Alle Definitionen sind nach Fachbereich und Fach sortiert wie sie zum Stand " +
@@ -57,6 +62,31 @@ public class AboutActivity extends AppCompatActivity {
         setContentView(R.layout.activity_about);
 
         TextView about_text = findViewById(R.id.tV_about);
-        about_text.setText(text);
+        String text = getHtmlFromAssetsFile(StorageManager.PATH_TO_ABOUT_HTML);
+        about_text.setText(android.text.Html.fromHtml(text));
+    }
+
+    private String getHtmlFromAssetsFile(String filename) {
+        BufferedReader reader = null;
+        StringBuilder sb = new StringBuilder();
+        try {
+            reader = new BufferedReader(new InputStreamReader(getAssets().open(filename)));
+            // do reading, usually loop until end of file reading
+            String mLine;
+            while ((mLine = reader.readLine()) != null) {
+                sb.append(mLine);
+            }
+        } catch (IOException e) {
+            //log the exception
+        } finally {
+            if (reader != null) {
+                try {
+                    reader.close();
+                } catch (IOException e) {
+                    //log the exception
+                }
+            }
+        }
+        return sb.toString();
     }
 }

@@ -39,6 +39,8 @@ public class StorageManager {
     //public static final String EXPORT_PATH = "/Download/definitions.json";
     public static final String EXPORT_PATH = "/Download/definitions.txt";
 
+    public static final String PATH_TO_ABOUT_HTML = "about.html";
+
     public static void storeExternalFile(Activity activity, String path, String ... message) {
         try {
             // important!! ask for permission
