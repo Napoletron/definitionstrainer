@@ -3,7 +3,6 @@ package deftrainer.example.definitionstrainer.model;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
-import android.content.res.AssetManager;
 import android.os.Environment;
 import android.util.Log;
 
@@ -18,7 +17,6 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.List;
@@ -34,14 +32,15 @@ public class StorageManager {
     // The Uri leads to the JSON file of the Definitions
     public static final String PATHTODEFINITIONSOBJ= "definitions.obj";
     public static final String PATHTODEFINITIONSJSON= "definitions.json";
-    public static final String PATH_TO_DEFAULT_OBJ_DEFINITIONS = "definitions.obj";
+    //public static final String PATH_TO_DEFAULT_OBJ_DEFINITIONS = "definitions.obj";
     public static final String PATH_TO_INTERNAL_SETTINGS = "settings.obj";
     //public static final String EXPORT_PATH = "/Download/definitions.json";
     public static final String EXPORT_PATH = "/Download/definitions.txt";
 
     public static final String PATH_TO_ABOUT_HTML = "about.html";
 
-    public static void storeExternalFile(Activity activity, String path, String ... message) {
+    //public static void storeExternalFile(Activity activity, String path, String ... message) {
+    public static void storeExternalFile(Activity activity, String ... message) {
         try {
             // important!! ask for permission
             ActivityCompat.requestPermissions(activity, new String[] {Manifest.permission.WRITE_EXTERNAL_STORAGE}, 123);
@@ -148,12 +147,11 @@ public class StorageManager {
     }
 
 
-    /**
+    /*
      * Loads an object from an asset file.
      * @param name the filename i.e. "definitions.obj"
      * @param c The context
      * @return the loaded object, or null if an exception occurs.
-     */
     public static Object loadAssetObject(String name, Context c) throws ClassNotFoundException{
         Object objectToLoad = null;
         AssetManager assetManager = c.getAssets();
@@ -175,6 +173,7 @@ public class StorageManager {
 
         return objectToLoad;
     }
+    */
 
     /**
      * This method tries to convert the Java-Object to a JSon-String
