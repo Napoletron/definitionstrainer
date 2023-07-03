@@ -10,4 +10,5 @@
     <color name="correctGreen">#0CA60C</color>
     <color name="ButtonGreen">#7C08F600</color>
     <color name="ButtonRed">#81FF0000</color>
+    <color name="DefaultGray">#FFEBEBEB</color>
 </resources>

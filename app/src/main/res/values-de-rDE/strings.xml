@@ -52,7 +52,7 @@
     <string name="gemeistert">gemeistert.</string>
     <string name="you_need_to_grant_permission_to_access_the_external_storage">Zugriff auf den externen Speicher verweigert. Bitte stimme der Frage für den Zugriff auf den Speicher zu.</string>
     <string name="a_picture_with_questionmarks">Ein Bild mit Fragezeichen darauf</string>
-    <string name="add_definition">Definition. Es darf kein VS-NfD Inhalt eingegeben werden! Die Definition muss in HTML ausgedrückt werden:  Beispiel: <ol><lx>Tatbestand<ol><lx>Objektiver Tatbestand<ol><lx>OTB eins</lx><lx>OTB zwei</lx></ol></lx><lx>Subjektiver Tatbestand</lx></ol></lx><lx>Rechtswidrigkeit</lx><lx>Schuld</lx></ol></string>
+    <string name="add_definition">Definition. Es darf kein VS-NfD Inhalt eingegeben werden! Die Definition kann in HTML ausgedrückt werden.</string>
     <string name="restricted_content">VS-NfD</string>
     <string name="restricted_content_may_not_be_inserted">Es ist streng untersagt, VS-NfD Inhalte in diese Anwendung einzugeben oder zu speichern!</string>
     <string name="understood">Verstanden</string>

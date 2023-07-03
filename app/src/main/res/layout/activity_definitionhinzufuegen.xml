@@ -9,7 +9,7 @@
     <ScrollView
         android:id="@+id/scroll_view_id"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -18,18 +18,17 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constrain_layout_id"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
             <Button
                 android:id="@+id/dhf_b_delete"
-                android:layout_width="60dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_marginBottom="8dp"
                 android:background="@android:drawable/ic_menu_delete"
                 app:layout_constraintBottom_toTopOf="@+id/dhf_et_title"
                 app:layout_constraintEnd_toEndOf="@+id/dhf_et_title"
-                app:layout_constraintTop_toTopOf="parent" />
+                tools:ignore="SpeakableTextPresentCheck" />
 
             <TextView
                 android:id="@+id/textview6"
@@ -47,7 +46,7 @@
             <EditText
                 android:id="@+id/dhf_et_title"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="25dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="32dp"
                 android:layout_marginRight="32dp"
@@ -77,8 +76,7 @@
                 android:layout_width="0dp"
                 android:layout_height="300dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginBottom="16dp"
-                android:background="#0C000000"
+                android:background="@color/DefaultGray"
                 android:ems="10"
                 android:gravity="start|top"
                 android:hint="@string/add_definition"
@@ -103,7 +101,7 @@
             <Spinner
                 android:id="@+id/dhf_spin_fach"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="30dp"
                 android:layout_marginTop="8dp"
                 android:foreground="#0D000000"
                 app:layout_constraintEnd_toEndOf="@+id/dhf_met_definition"
@@ -112,9 +110,13 @@
 
             <Button
                 android:id="@+id/dhf_b_addClass"
-                android:layout_width="wrap_content"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
+                android:background="@color/DefaultGray"
+                android:minWidth="30dp"
+                android:minHeight="30dp"
+                android:padding="0dp"
                 android:text="(+)"
                 app:layout_constraintEnd_toEndOf="@+id/dhf_spin_fach"
                 app:layout_constraintTop_toBottomOf="@+id/dhf_spin_fach" />
@@ -145,6 +147,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="16dp"
+                android:background="@color/DefaultGray"
                 android:text="@string/create"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/dhf_spin_fach"
