@@ -17,6 +17,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Random;
 import java.util.Set;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public class DefinitionsManager {
 
@@ -600,13 +602,39 @@ public class DefinitionsManager {
             return;
         }
 
+        final List<String> names_to_update = Definition.get_names(defs_to_update);
+        final List<String> names_to_add = Definition.get_names(defs_to_add);
+
         Callable callable = new Callable(defs_to_update, defs_to_add, c);
         if ( !Settings.getSettings().getFIRST_INSTALL() ) {
-            show_asking_dialog_to_update_defs(callable, number_to_updates, number_to_add, c);
+            show_asking_dialog_to_update_defs(callable, number_to_updates, number_to_add, names_to_update, names_to_add, c);
         } else {
             callable.call();
         }
 
+    }
+
+
+    private String get_dialog_string(int num_of_defs_to_update, int num_of_defs_to_add, List<String> names_to_update, List<String> names_to_add) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(num_of_defs_to_update);
+        sb.append(" Definitions to update and ");
+        sb.append(num_of_defs_to_add);
+        sb.append(" Definitions to add were found. Do you want to add and update them?");
+        sb.append("\n\nTo update:\n");
+        for (String name : names_to_update) {
+            sb.append(" - ");
+            sb.append(name);
+            sb.append("\n");
+        }
+        sb.append("\nTo add:\n");
+        for (String name : names_to_add) {
+            sb.append(" - ");
+            sb.append(name);
+            sb.append("\n");
+        }
+
+        return sb.toString();
     }
 
     /**
@@ -616,11 +644,12 @@ public class DefinitionsManager {
      * Dies wird in den Settings gespeichert.
      * @param c The context (current activity)
      */
-    private void show_asking_dialog_to_update_defs(final Callable callable, int num_of_defs_to_update, int num_of_defs_to_add, final Context c) {
+    private void show_asking_dialog_to_update_defs(final Callable callable, int num_of_defs_to_update, int num_of_defs_to_add, List<String> names_to_update, List<String> names_to_add, final Context c) {
         AlertDialog.Builder adb = new AlertDialog.Builder(c);
 
-        String question_string = String.format(Locale.getDefault(), "%d Definitions to update and %d Definitions to add were found. Do you want to add and update them?", num_of_defs_to_update, num_of_defs_to_add);
-        adb.setMessage(question_string);
+        String dialog_string = get_dialog_string(num_of_defs_to_update, num_of_defs_to_add, names_to_update, names_to_add);
+
+        adb.setMessage(dialog_string);
         adb.setTitle(R.string.add);
 
         adb.setCancelable(false);

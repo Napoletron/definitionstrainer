@@ -1,6 +1,7 @@
 package deftrainer.example.definitionstrainer.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -149,5 +150,13 @@ public class Definition implements Serializable, Comparable{
         String name1 = this.getName().toLowerCase(Locale.ROOT)+this.getID();
         String name2 = d2.getName().toLowerCase(Locale.ROOT)+d2.getID();
         return name1.compareTo(name2);
+    }
+
+    public static List<String> get_names(List<Definition> defs) {
+        List<String> names = new ArrayList<>();
+        for (Definition def : defs) {
+            names.add(def.getName());
+        }
+        return names;
     }
 }

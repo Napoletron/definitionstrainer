@@ -1,13 +1,17 @@
 package deftrainer.example.definitionstrainer.Activities;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.os.Environment;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -50,6 +54,8 @@ public class EinstellungenActivity extends AppCompatActivity {
     private ArrayAdapter<String> aa;
     private TextView set_tv_version;
 
+    private int default_class_pos;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,18 +69,43 @@ public class EinstellungenActivity extends AppCompatActivity {
         initResetButton();
         initSaveButton();
         initCheatButton();
+        initIncreaseTextEdit();
+        initDecreaseTextEdit();
         initClassSpinner();
+        update_spinner();
 
         update_editTextFields();
-        update_spinner();
+    }
+
+    private void initIncreaseTextEdit() {
+        set_et_increase.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    activateSaveButton();
+                }
+            }
+        });
+    }
+
+    private void initDecreaseTextEdit() {
+        set_et_decrease.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    activateSaveButton();
+                }
+            }
+        });
     }
 
     private List<String> getClassSpinnerText(List<String> classes) {
         List<String> classesText = new ArrayList<>();
+        classesText.add("Please select a class...");
         for (String c : classes) {
             int all = DefinitionsManager.getDefinitionsManager().getNumberOfAllDefinitionsOfThatClass(c);
             int mastered = DefinitionsManager.getDefinitionsManager().getNumberOfAllMasteredDefinitionsOfThatClass(c);
-            String classText = String.format("%s (%d/%d)", c, mastered, all);
+            @SuppressLint("DefaultLocale") String classText = String.format("%s (%d/%d)", c, mastered, all);
             classesText.add(classText);
         }
         return classesText;
@@ -91,7 +122,11 @@ public class EinstellungenActivity extends AppCompatActivity {
         set_spin_class.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                // stub
+                if (position != 0 && position != default_class_pos)
+                    activateSaveButton();
+                else if (position == 0) {
+                    deactivateSaveButton();
+                }
             }
 
             @Override
@@ -99,6 +134,7 @@ public class EinstellungenActivity extends AppCompatActivity {
                 // stub
             }
         });
+
     }
 
     private void getAllViews() {
@@ -136,8 +172,8 @@ public class EinstellungenActivity extends AppCompatActivity {
         aa.notifyDataSetChanged();
 
         String default_klasse = Settings.getSettings().getKlasse();
-        int pos = DefinitionsManager.getDefinitionsManager().getAllClasses().indexOf(default_klasse);
-        set_spin_class.setSelection(pos);
+        default_class_pos = DefinitionsManager.getDefinitionsManager().getAllClasses().indexOf(default_klasse);
+        set_spin_class.setSelection(default_class_pos);
     }
     /**
      * Wenn der Benutzer eine Datei exportieren will...
@@ -295,12 +331,27 @@ public class EinstellungenActivity extends AppCompatActivity {
     }
 
     private void initSaveButton() {
+        deactivateSaveButton();
         set_b_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                saveSettings();
+                if (set_b_save.isActivated()) // for some reason this if-clause is needed...
+                    saveSettings();
             }
         });
+    }
+
+    private void activateSaveButton() {
+        set_b_save.setActivated(true);
+        set_b_save.setBackgroundColor(getResources().getColor(R.color.polizeiblau));
+        int flags = set_b_save.getPaintFlags();
+        set_b_save.setPaintFlags(flags & ~Paint.STRIKE_THRU_TEXT_FLAG);
+    }
+
+    private void deactivateSaveButton() {
+        set_b_save.setActivated(false);
+        set_b_save.setBackgroundColor(getResources().getColor(R.color.polizeihellhellblau));
+        set_b_save.setPaintFlags(set_b_save.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
     }
 
     /**
