@@ -43,17 +43,23 @@ public class MyTagHandler implements Html.TagHandler {
      * we can continue with correct index of outer list
      */
     Stack<Integer> olNextIndex = new Stack<Integer>();
+
+    Stack<Integer> last_character_width = new Stack<>();
     private static final String[][]counters =
             {{"I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"},
              {"1.", "2.", "3.", "4.", "5.", "6.", "7.", "8.", "9.", "10."},
              {"a)", "b)", "c)", "d)", "e)", "f)", "g)", "h)", "i)", "j)"},
-             {"i.", "ii.", "iii.", "iv.", "v.", "vi.", "vii.", "viii.", "ix.", "x."}};
+             {"i.", "ii.", "iii.", "iv.", "v.", "vi.", "vii.", "viii.", "ix.", "x."},
+             {"1.", "2.", "3.", "4.", "5.", "6.", "7.", "8.", "9.", "10."},
+             {"a.", "b.", "c.", "d.", "e.", "f.", "g.", "h.", "i.", "j."}};
     /**
      * List indentation in pixels. Nested lists use multiple of this.
      */
     private static final int INDENT = 20;
-    private static final int LIST_ITEM_INDENT = INDENT * 2;
+    private static final int LIST_ITEM_INDENT = INDENT * 2 ;
     private static final BulletSpan BULLET = new BulletSpan(INDENT);
+    private int[] derp = {30, 0, 0, 0, 0, 0};
+    private int depth = -1;
 
     @Override
     public void handleTag(boolean opening, String tag, Editable output, XMLReader xmlReader) {
@@ -67,9 +73,11 @@ public class MyTagHandler implements Html.TagHandler {
             if (opening) {
                 lists.push(tag);
                 olNextIndex.push(1);//TODO: add support for lists starting other index than 1
+                depth++;
             } else {
                 lists.pop();
                 olNextIndex.pop();
+                depth--;
             }
         } else if (tag.equalsIgnoreCase("lx")) {
             if (opening) {
@@ -79,8 +87,10 @@ public class MyTagHandler implements Html.TagHandler {
                 String parentList = lists.peek();
                 if (parentList.equalsIgnoreCase("ol")) {
                     start(output, new Ol());
-                    output.append(counters[lists.size() - 1][olNextIndex.peek() - 1]).append(" ");
+                    String counter = (counters[lists.size() - 1][olNextIndex.peek() - 1]) + " ";
+                    output.append(counter);
                     olNextIndex.push(olNextIndex.pop() + 1);
+
                 } else if (parentList.equalsIgnoreCase("ul")) {
                     start(output, new Ul());
                 }
@@ -109,13 +119,13 @@ public class MyTagHandler implements Html.TagHandler {
                         output.append("\n");
                     }
                     int numberMargin = LIST_ITEM_INDENT * (lists.size() - 1);
-                    if (lists.size() > 2) {
+                    if (lists.size() > 1) {
                         // Same as in ordered lists: counter the effect of nested Spans
                         numberMargin -= (lists.size() - 2) * LIST_ITEM_INDENT;
                     }
                     end(output,
                             Ol.class,
-                            new LeadingMarginSpan.Standard(numberMargin, numberMargin + INDENT));
+                            new LeadingMarginSpan.Standard(numberMargin, numberMargin +derp[depth]));
                 }
             }
         } else {
@@ -154,6 +164,14 @@ public class MyTagHandler implements Html.TagHandler {
             return null;
         }
         return objs[objs.length - 1];
+    }
+
+    private static int stackSumm(Stack<Integer> stack) {
+        int summ = 0;
+        for (int s : stack) {
+            summ += s;
+        }
+        return summ;
     }
 
     private static class Ul { }

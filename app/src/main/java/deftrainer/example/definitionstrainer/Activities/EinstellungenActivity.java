@@ -124,7 +124,7 @@ public class EinstellungenActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (position != 0 && position != default_class_pos)
                     activateSaveButton();
-                else if (position == 0) {
+                else {
                     deactivateSaveButton();
                 }
             }
@@ -172,7 +172,7 @@ public class EinstellungenActivity extends AppCompatActivity {
         aa.notifyDataSetChanged();
 
         String default_klasse = Settings.getSettings().getKlasse();
-        default_class_pos = DefinitionsManager.getDefinitionsManager().getAllClasses().indexOf(default_klasse);
+        default_class_pos = DefinitionsManager.getDefinitionsManager().getAllClasses().indexOf(default_klasse) + 1;
         set_spin_class.setSelection(default_class_pos);
     }
     /**
@@ -335,8 +335,12 @@ public class EinstellungenActivity extends AppCompatActivity {
         set_b_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (set_b_save.isActivated()) // for some reason this if-clause is needed...
+                if (set_b_save.isActivated()) {// for some reason this if-clause is needed...
                     saveSettings();
+                    String default_klasse = Settings.getSettings().getKlasse();
+                    default_class_pos = DefinitionsManager.getDefinitionsManager().getAllClasses().indexOf(default_klasse) + 1;
+                    deactivateSaveButton();
+                }
             }
         });
     }
@@ -473,7 +477,8 @@ public class EinstellungenActivity extends AppCompatActivity {
         int increase = Integer.parseInt(set_et_increase.getText().toString());
         int decrease = Integer.parseInt(set_et_decrease.getText().toString());
         List<String> klassen = DefinitionsManager.getDefinitionsManager().getAllClasses();
-        Settings.getSettings().setKlasse(klassen.get(set_spin_class.getSelectedItemPosition()), this);
+        // We have to subtract 1 here, since the spinner also addes a "Please select a class..."-item
+        Settings.getSettings().setKlasse(klassen.get(set_spin_class.getSelectedItemPosition()-1), this);
         DefinitionsManager.getDefinitionsManager().update_important_definitions();
 
         if (!checkCorrectnesOfValues(increase, decrease)) {
