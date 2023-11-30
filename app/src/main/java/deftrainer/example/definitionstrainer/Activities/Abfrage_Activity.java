@@ -77,7 +77,7 @@ public class Abfrage_Activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 System.out.println(currentDefinition.getDefinition());
-                textview_definition_definition.setText(android.text.Html.fromHtml(currentDefinition.getDefinition(), null, new MyTagHandler()));
+                textview_definition_definition.setText(android.text.Html.fromHtml(currentDefinition.getDefinition().replace("li>", "lx>"), null, new MyTagHandler()));
                 button_aufloesen.setVisibility(View.INVISIBLE);
                 button_konnteIch.setVisibility(View.VISIBLE);
                 button_besserNochmal.setVisibility(View.VISIBLE);

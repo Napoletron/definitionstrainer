@@ -42,7 +42,7 @@ public class RecyclerViewAdapterSuchen extends RecyclerView.Adapter<RecyclerView
         final Definition def_to_bind = visibleDefinitions.get(position);
 
         holder.getTitleView().setText(def_to_bind.getName());
-        holder.getDefinitionView().setText(android.text.Html.fromHtml(def_to_bind.getDefinition(), null, new MyTagHandler()));
+        holder.getDefinitionView().setText(android.text.Html.fromHtml(def_to_bind.getDefinition().replace("li>", "lx>"), null, new MyTagHandler()));
         holder.getFachView().setText(def_to_bind.getFeacherString());
         holder.getJahrgangView().setText(def_to_bind.getJahrgaengeString());
         holder.getFavoritCheckBox().setChecked(def_to_bind.getFavorit());
